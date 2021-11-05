@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.AdminMapper">
+
+    <insert id="adduser" parameterType="Register">
+        insert into userinfo values (0,#{username},#{account},#{pwd})
+    </insert>
+
+    <select id="queryone" parameterType="string" resultType="_int">
+        select count(*) from userinfo where account = #{account}
+    </select>
+
+    <select id="queryaccount" parameterType="string" resultType="_int">
+        select count(*) from userinfo where account = #{account} and pwd = #{pwd}
+    </select>
+
+</mapper>

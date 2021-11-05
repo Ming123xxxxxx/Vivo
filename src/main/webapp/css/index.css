@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body{
+    background-color:#f6f6f6 ;
+    position: relative;
+}
+
+.top_bar{
+    width: 100%;
+    height: 40px;
+    background-color: #242933;
+    line-height: 40px;
+    font-size: 10px;
+    list-style: none;
+}
+.top_bar a{
+    color:#70757f;
+}
+.top_bar a:hover{
+    color: rgba(255, 255, 255, 0.55);
+}
+.top_bar .top_bar_left li{
+    float: left;
+    margin-left: 20px;
+}
+.top_bar .top_bar_right li{
+    float: left;
+    margin-right: 20px;
+}
+.top_bar span{
+    display: inline-block;
+}
+.top_bar .top_bar_left{
+    float: left;
+    margin-left: 10%;
+}
+.top_bar .top_bar_right{
+    float: right;
+    margin-right: 6%;
+}
+
+.top_bar .register_sign{
+    width: 200px;
+    height: 80px;
+    background-color: white;
+    position: absolute;
+    right: 4%;
+    top: 40px;
+    font-size: 15px;
+    line-height: 40px;
+    border-radius: 5px;
+    display: none;
+}
+.top_bar .register_sign span{
+    width: 100%;
+    height: 40px;
+    display: block;
+    text-align: center;
+}
+
+
+.top_bar .register_sign .icom{
+    font-family:'icomoon';
+}
+.top_bar .register_sign a{
+    color: black;
+}
+.top_bar .register_sign a:hover{
+    color: #1982c7;
+}
