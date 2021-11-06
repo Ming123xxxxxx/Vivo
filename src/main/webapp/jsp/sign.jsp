@@ -30,21 +30,18 @@
                                        "code":$("#code").val()
                                    },
                                    success:function (data) {
-                                    if (data=="001"){
-                                        alert("账号或密码错误")
-                                    }else if (data=="002") {
+                                    $("form").removeAttr("onsubmit");
+                                    if (data[1]=="001"){
+                                        alert("账号或密码错误");
+                                        window.location.href=data[0];
+                                    }else if (data[1]=="002") {
                                         alert("验证码错误")
+                                        window.location.href=data[0];
+                                    }else if (data[1]=="000"){
+                                        window.location.href=data[0];
                                     }
-                                            $.ajax({
-                                                url:`${pageContext.request.contextPath}/log/result`,
-                                                type:"post",
-                                                success:function () {
-                                                    window.location.href="http://localhost:8080/Vivo_war_exploded/homepage/index";
-                                                }
-                                            })
                                    }
                                })
-                       return false;
                    })
 
          })
@@ -58,7 +55,7 @@
                          <a href="${pageContext.request.contextPath}/homepage/index"><img src="${pageContext.request.contextPath}/img/logo.png" class="h"></a>
                          <p>登录</p>
                           <div class="sig">
-                             <form method="post">
+                             <form method="post" onsubmit="return false">
                                  <input type="text" placeholder="       请输入账号" name="account" id="act"><br>
                                  <input type="password" placeholder="       请输入密码" name="pwd" id="pwd"><br>
                                  <input type="text" placeholder="       请输入验证码" style="width: 240px" name="code" id="code">

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.AdminService;
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 温黎明
@@ -29,33 +31,31 @@ public class SignIn {
 
     @ResponseBody
     @RequestMapping("/ver")
-    public String ver(String account, String pwd, String code,HttpSession session){
+    public List ver(String account, String pwd, String code,HttpSession session){
+        List list =new ArrayList();
+        String suc="http://localhost:8080/Vivo_war_exploded/homepage/index";
+        String def="http://localhost:8080/Vivo_war_exploded/log/on";
+        String s="000";
+        String noac="001";
+        String noco="002";
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
             if(adminService.queryaccount(account,pwd)==1){
-                session.setAttribute("veri","success");
-                return "000";
+
+                list.add(suc);
+                list.add(s);
+                return list;
+
             }else{
-                session.setAttribute("veri","001");
-                return "001";
+                list.add(def);
+                list.add(noac);
+                return list;
             }
         }else{
-            session.setAttribute("veri","002");
-                return "002";
+
+                list.add(def);
+                list.add(noco);
+                return list;
+
         }
     }
-
-    @RequestMapping("/result")
-    public String result(HttpSession session){
-
-            System.out.println("result:"+session.getAttribute("veri"));
-            System.out.println("---------------");
-            if("success".equals(session.getAttribute("veri"))){
-                session.removeAttribute("veri");
-                return "redirect:/homepage/index";
-            }else{
-                return "sign";
-            }
-
-    }
-
 }
