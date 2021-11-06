@@ -30,16 +30,16 @@
                                        "code":$("#code").val()
                                    },
                                    success:function (data) {
+
                                     $("form").removeAttr("onsubmit");
                                     if (data[1]=="001"){
                                         alert("账号或密码错误");
-                                        window.location.href=data[0];
                                     }else if (data[1]=="002") {
                                         alert("验证码错误")
-                                        window.location.href=data[0];
                                     }else if (data[1]=="000"){
-                                        window.location.href=data[0];
                                     }
+
+                                    window.location.href=data[0];
                                    }
                                })
                    })

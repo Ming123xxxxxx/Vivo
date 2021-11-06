@@ -40,22 +40,18 @@ public class SignIn {
         String noco="002";
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
             if(adminService.queryaccount(account,pwd)==1){
-
                 list.add(suc);
                 list.add(s);
                 return list;
-
             }else{
                 list.add(def);
                 list.add(noac);
                 return list;
             }
         }else{
-
                 list.add(def);
                 list.add(noco);
                 return list;
-
         }
     }
 }
