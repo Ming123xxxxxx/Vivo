@@ -22,7 +22,7 @@
                    );
                    $("#sub").click(function () {
                                $.ajax({
-                                   url:"${pageContext.request.contextPath}/log/ver",
+                                   url:`${pageContext.request.contextPath}/log/ver`,
                                    type:"post",
                                    data:{
                                        "account":$("#act").val(),
@@ -30,16 +30,21 @@
                                        "code":$("#code").val()
                                    },
                                    success:function (data) {
-                                   $("form").removeAttr("onsubmit")
                                     if (data=="001"){
                                         alert("账号或密码错误")
                                     }else if (data=="002") {
                                         alert("验证码错误")
-                                    }else if(data=="000"){
-                                        alert("登陆成功")
                                     }
+                                            $.ajax({
+                                                url:`${pageContext.request.contextPath}/log/result`,
+                                                type:"post",
+                                                success:function () {
+                                                    window.location.href="http://localhost:8080/Vivo_war_exploded/homepage/index";
+                                                }
+                                            })
                                    }
                                })
+                       return false;
                    })
 
          })
@@ -53,7 +58,7 @@
                          <a href="${pageContext.request.contextPath}/homepage/index"><img src="${pageContext.request.contextPath}/img/logo.png" class="h"></a>
                          <p>登录</p>
                           <div class="sig">
-                             <form action="${pageContext.request.contextPath}/log/result" method="post" onsubmit="return false">
+                             <form method="post">
                                  <input type="text" placeholder="       请输入账号" name="account" id="act"><br>
                                  <input type="password" placeholder="       请输入密码" name="pwd" id="pwd"><br>
                                  <input type="text" placeholder="       请输入验证码" style="width: 240px" name="code" id="code">
@@ -61,7 +66,6 @@
                                  <input type="submit" value="登录" style="background-color: #4375ff " id="sub">
                              </form>
                               <a href="${pageContext.request.contextPath}/registerinfo/register"><button>注册vivo账号</button></a>
-
                           </div>
                      </div>
            </div>
