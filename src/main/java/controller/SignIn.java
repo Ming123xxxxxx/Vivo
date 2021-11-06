@@ -32,24 +32,30 @@ public class SignIn {
     public String ver(String account, String pwd, String code,HttpSession session){
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
             if(adminService.queryaccount(account,pwd)==1){
+                session.setAttribute("veri","success");
                 return "000";
             }else{
+                session.setAttribute("veri","001");
                 return "001";
             }
         }else{
+            session.setAttribute("veri","002");
                 return "002";
         }
     }
 
-    @RequestMapping("result")
+    @RequestMapping("/result")
     public String result(HttpSession session){
 
-        System.out.println("result:"+session.getAttribute("veri"));
-        if("success".equals(session.getAttribute("veri"))){
-            return "redirect:/homepage/index";
-        }else{
-            return "redirect:sign";
-        }
+            System.out.println("result:"+session.getAttribute("veri"));
+            System.out.println("---------------");
+            if("success".equals(session.getAttribute("veri"))){
+                session.removeAttribute("veri");
+                return "redirect:/homepage/index";
+            }else{
+                return "sign";
+            }
+
     }
 
 }

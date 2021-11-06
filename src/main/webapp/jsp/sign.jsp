@@ -11,7 +11,8 @@
     <title>登录</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sign.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-    <SCRIPT TYPE="text/javascript">
+    <script TYPE="text/javascript">
+
         //刷新验证码
          $(function () {
                    $("#codes").click(
@@ -29,23 +30,20 @@
                                        "code":$("#code").val()
                                    },
                                    success:function (data) {
-                                       console.log(data)
+                                   $("form").removeAttr("onsubmit")
                                     if (data=="001"){
                                         alert("账号或密码错误")
-                                        <%session.setAttribute("veri","error");%>
                                     }else if (data=="002") {
                                         alert("验证码错误")
-                                        <%session.setAttribute("veri","error");%>
                                     }else if(data=="000"){
-                                       <%session.setAttribute("veri","success");%>
+                                        alert("登陆成功")
                                     }
                                    }
-
                                })
                    })
 
          })
-    </SCRIPT>
+    </script>
 </head>
 <body>
        <div class="bottom">
@@ -55,7 +53,7 @@
                          <a href="${pageContext.request.contextPath}/homepage/index"><img src="${pageContext.request.contextPath}/img/logo.png" class="h"></a>
                          <p>登录</p>
                           <div class="sig">
-                             <form action="${pageContext.request.contextPath}/log/result" method="post">
+                             <form action="${pageContext.request.contextPath}/log/result" method="post" onsubmit="return false">
                                  <input type="text" placeholder="       请输入账号" name="account" id="act"><br>
                                  <input type="password" placeholder="       请输入密码" name="pwd" id="pwd"><br>
                                  <input type="text" placeholder="       请输入验证码" style="width: 240px" name="code" id="code">

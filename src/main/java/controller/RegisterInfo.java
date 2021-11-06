@@ -40,16 +40,9 @@ public class RegisterInfo {
 
     @RequestMapping("adduser")
     public String adduser(String username, String account, String pwd, HttpSession session) {
-
         Register register = new Register(username,account,pwd);
-          if("Ok".equals(session.getAttribute("Ok"))){
-              adminService.adduser(register);
-              System.out.println("xxx");
-              return "index";
-          }else{
-              return "redirect:register";
-          }
-
+        adminService.adduser(register);
+        return "index";
     }
 
     @ResponseBody

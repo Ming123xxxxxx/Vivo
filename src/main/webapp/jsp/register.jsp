@@ -47,10 +47,8 @@
 
                                     if($("input[type='checkbox']").attr('checked')=="checked"&&i==4){
                                        $(".sub").removeAttr("disabled");
-                                       <%session.setAttribute("Ok","Ok");%>
                                     }else{
                                         $(".sub").attr("disabled","disabled");
-                                      <%session.setAttribute("error","Ok");%>
                                     }
 
                             },
