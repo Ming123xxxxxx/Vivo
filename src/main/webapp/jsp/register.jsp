@@ -64,7 +64,7 @@
 <body>
      <div class="homepage">
 
-         <a href="${pageContext.request.contextPath}/jsp/index.jsp"> <span class="logo"><img src="${pageContext.request.contextPath}/img/logo.png"></span></a>
+         <a href="${pageContext.request.contextPath}/homepage/index"> <span class="logo"><img src="${pageContext.request.contextPath}/img/logo.png"></span></a>
 
          <form action="${pageContext.request.contextPath}/registerinfo/adduser" method="post">
              <h1>账号注册</h1>

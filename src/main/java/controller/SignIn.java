@@ -42,15 +42,18 @@ public class SignIn {
             if(adminService.queryaccount(account,pwd)==1){
                 list.add(suc);
                 list.add(s);
+                session.setAttribute("veri",account);
                 return list;
             }else{
                 list.add(def);
                 list.add(noac);
+                session.setAttribute("veri","fail");
                 return list;
             }
         }else{
                 list.add(def);
                 list.add(noco);
+                session.setAttribute("veri","fail");
                 return list;
         }
     }

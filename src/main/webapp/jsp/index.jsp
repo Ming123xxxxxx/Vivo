@@ -27,7 +27,30 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
+    <script type="text/javascript">
+       window.onload=function () {
+           var p=<%=session.getAttribute("veri")%>;
+           console.log("p="+p);
+           if(p!="fail"&&p!=null){
+               $("#s1").hide();
+               $("#s2").hide();
+               $("#s3").show();
+               $("#s4").show();
+           }else{
+               $("#s3").hide();
+               $("#s4").hide();
+               $("#s1").show();
+               $("#s2").show();
+           }
+       }
 
+       $(function () {
+           $("#s4").click(function () {
+               <%session.setAttribute("veri",null);%>
+               window.location.href="http://localhost:8080/Vivo_war_exploded/";
+           })
+       })
+    </script>
 </head>
 <body>
       <div class="top_bar">
@@ -46,9 +69,10 @@
 
               <!--注册/登录-->
           <div class="register_sign">
-                <span class="icom">  <a href="${pageContext.request.contextPath}/log/on">    登录</a></span>
-              <span class="icom">  <a href="${pageContext.request.contextPath}/registerinfo/register.action">   注册</a></span>
-
+              <span id="s1" class="icom">  <a href="${pageContext.request.contextPath}/log/on">    登录</a></span>
+              <span id="s2" class="icom">  <a href="${pageContext.request.contextPath}/registerinfo/register.action">   注册</a></span>
+              <span id="s3" class="icom">  <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    账户中心</a></span>
+              <span id="s4" class="icom">  <a href="javascript:;">   退出登录</a></span>
           </div>
 
           </span>

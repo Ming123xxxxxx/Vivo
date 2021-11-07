@@ -36,9 +36,7 @@
                                         alert("账号或密码错误");
                                     }else if (data[1]=="002") {
                                         alert("验证码错误")
-                                    }else if (data[1]=="000"){
                                     }
-
                                     window.location.href=data[0];
                                    }
                                })
