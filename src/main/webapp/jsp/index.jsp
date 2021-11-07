@@ -46,8 +46,13 @@
 
        $(function () {
            $("#s4").click(function () {
-               <%session.setAttribute("veri",null);%>
-               window.location.href="http://localhost:8080/Vivo_war_exploded/";
+                   $.ajax({
+                       url:`${pageContext.request.contextPath}/exitac/ea`,
+                       success:function(){
+                           window.location.href="http://localhost:8080/Vivo_war_exploded/"
+                       }
+
+                   })
            })
        })
     </script>

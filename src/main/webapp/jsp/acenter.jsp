@@ -14,7 +14,7 @@
     <script type="text/javascript">
         $(function () {
               $("#img1").click(function () {
-
+                  window.location.href="http://localhost:8080/Vivo_war_exploded/";
               })
         })
     </script>
