@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.Register;
 import service.AdminService;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 温黎明
@@ -24,5 +28,16 @@ public class AcccountCenter {
     @RequestMapping("pinformation")
     public String info(){
         return "acenter";
+    }
+
+    @ResponseBody
+    @RequestMapping("pikeupinfo")
+    public List pikeuoinfo(HttpSession session){
+        List<String> list =new ArrayList<String>();
+        Register reg= adminService.pikeupinformation((String)session.getAttribute("veri"));
+        list.add(reg.getUsername());
+        list.add(reg.getAccount());
+        list.add(reg.getPwd());
+        return list;
     }
 }

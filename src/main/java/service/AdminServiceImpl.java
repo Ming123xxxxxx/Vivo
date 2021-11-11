@@ -34,4 +34,9 @@ public class AdminServiceImpl  implements AdminService {
     public int queryaccount(String account, String pwd) {
         return adminMapper.queryaccount(account,pwd);
     }
+
+    @Override
+    public Register pikeupinformation(String account) {
+        return adminMapper.pikeupinformation(account);
+    }
 }

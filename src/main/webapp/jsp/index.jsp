@@ -56,6 +56,26 @@
            })
        })
     </script>
+<%--    <script type="text/javascript">--%>
+<%--        $(function () {--%>
+<%--            $("#seri #ddwon li").mouseover(function () {--%>
+<%--                $("#seri").stop().animate({--%>
+<%--                    height:"492px",--%>
+<%--                    borderRadius:"0 0 20px 20px",--%>
+<%--                },"flow")--%>
+<%--                console.log("pp:"+$("#seri").css("height"))--%>
+<%--                console.log("xx:"+$("#seri").css("height").value=="492px")--%>
+<%--            })--%>
+
+<%--         if($("#seri").css("height")=="492px"){--%>
+<%--             $("#seri #ddwon li").mouseout(function () {--%>
+<%--                 $("#seri").stop().animate({--%>
+<%--                     height: "85px"--%>
+<%--                 }, "flow")--%>
+<%--             })--%>
+<%--          }--%>
+<%--        })--%>
+<%--    </script>--%>
 </head>
 <body>
       <div class="top_bar">
@@ -82,6 +102,23 @@
 
           </span>
 
+      </div>
+
+      <div class="series" id="seri">
+
+           <div class="center" id="cent">
+               <ll>vivo</ll>
+               <span class="drop_down" id="ddwon">
+                       <li>NEX系列</li>
+                       <li>X系列</li>
+                       <li>S系列</li>
+                       <li>Y系列</li>
+                       <li>IQOO手机</li>
+                       <li>智能硬件</li>
+                       <a href="javascript:;"><li>商城</li></a>
+                       <a href="javascript:;"><li>服务</li></a>
+               </span>
+           </div>
 
       </div>
 

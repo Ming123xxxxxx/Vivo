@@ -15,4 +15,7 @@
         select count(*) from userinfo where account = #{account} and pwd = #{pwd}
     </select>
 
+    <select id="pikeupinformation" parameterType="string" resultType="Register">
+        select * from userinfo where account=#{account}
+    </select>
 </mapper>

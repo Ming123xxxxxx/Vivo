@@ -12,4 +12,5 @@ public interface AdminMapper {
     int adduser(Register register);
     int queryone(@Param("account") String account);
     int queryaccount(@Param("account") String account,@Param("pwd") String pwd);
+    Register pikeupinformation(@Param("account") String account);
 }

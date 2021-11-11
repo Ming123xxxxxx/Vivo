@@ -11,4 +11,5 @@ public interface AdminService {
     int adduser(Register register);
     int queryone(String account);
     int queryaccount(String account,String pwd);
+    Register pikeupinformation(String account);
 }
