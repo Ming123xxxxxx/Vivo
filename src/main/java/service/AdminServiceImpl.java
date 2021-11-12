@@ -39,4 +39,14 @@ public class AdminServiceImpl  implements AdminService {
     public Register pikeupinformation(String account) {
         return adminMapper.pikeupinformation(account);
     }
+
+    @Override
+    public int userdel(String account) {
+        return adminMapper.userdel(account);
+    }
+
+    @Override
+    public String getpwd(String account) {
+        return adminMapper.getpwd(account);
+    }
 }

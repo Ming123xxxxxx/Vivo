@@ -24,15 +24,47 @@
                  })
              }
 
-              $("#img1").click(function () {
-                  window.location.href="http://localhost:8080/Vivo_war_exploded/";
-              })
+                 $("#img1").click(function () {
+                      window.location.href="http://localhost:8080/Vivo_war_exploded/";
+                  })
+
+                $("#exit").click(function () {
+                    $.ajax({
+                        url:`${pageContext.request.contextPath}/exitac/ea`,
+                        success:function(){
+                      window.location.href="http://localhost:8080/Vivo_war_exploded/"
+                        }
+                    })
+                })
+
+                $("#cancll").click(function () {
+                     $("#bottom").hide(),
+                     $("#forms").show()
+                })
+
+                $("#ccells").click(function () {
+                     $.ajax({
+                         url:`${pageContext.request.contextPath}/atcenter/deluser`,
+                         data:{
+                             "upact":$("#upact").val()
+                         },
+                         success:function (data) {
+                             console.log("data:"+data)
+                             if(data=="0") {
+                                 alert("注销成功"),
+                                 window.location.href = "http://localhost:8080/Vivo_war_exploded/"
+                             }else{
+                                 alert("密码错误")
+                             }
+                         }
+                     })
+                })
         })
     </script>
 </head>
 <body>
 
-        <div class="bottom">
+        <div class="bottom" id="bottom">
 
             <div class="top">
                  <div class="blank"></div>
@@ -58,12 +90,17 @@
                 <div class="update sty">修改信息</div>
             </div>
             <div class="information_bar op">
-                <div class="exit sty"> 退出登录</div>
+                <div class="exit sty" id="exit"> 退出登录</div>
             </div>
             <div class="information_bar op">
-                <div class="cancell sty">账号注销</div>
+                <div class="cancell sty" id="cancll">账号注销</div>
             </div>
         </div>
 
+        <form method="post" id="forms">
+        <input type="password" placeholder="    请输入密码(>6&&<12)" id="upact"><br>
+        <input type="submit" value="注销" style="background: red;color: white" id="ccells"><br>
+        <button id="butt">返回</button>
+        </form>
 </body>
 </html>

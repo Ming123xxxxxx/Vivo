@@ -30,7 +30,6 @@
                                        "code":$("#code").val()
                                    },
                                    success:function (data) {
-
                                     $("form").removeAttr("onsubmit");
                                     if (data[1]=="001"){
                                         alert("账号或密码错误");

@@ -18,4 +18,12 @@
     <select id="pikeupinformation" parameterType="string" resultType="Register">
         select * from userinfo where account=#{account}
     </select>
+
+    <select id="getpwd" parameterType="string" resultType="string">
+        select pwd from userinfo where account=#{account}
+    </select>
+
+    <delete id="userdel" parameterType="string">
+        delete from userinfo where account=#{account}
+    </delete>
 </mapper>

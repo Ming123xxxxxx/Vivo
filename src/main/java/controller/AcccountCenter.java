@@ -35,9 +35,30 @@ public class AcccountCenter {
     public List pikeuoinfo(HttpSession session){
         List<String> list =new ArrayList<String>();
         Register reg= adminService.pikeupinformation((String)session.getAttribute("veri"));
-        list.add(reg.getUsername());
-        list.add(reg.getAccount());
-        list.add(reg.getPwd());
+        try {
+            list.add(reg.getUsername());
+            list.add(reg.getAccount());
+            String p="";
+            for(int i=0;i<reg.getPwd().length();i++){
+                p +="*";
+            }
+            list.add(p);
+        }catch (NullPointerException e){
+            return list;
+        }
         return list;
+    }
+
+    @ResponseBody
+    @RequestMapping("deluser")
+    public String deluser(HttpSession session,String upact){
+        String account=(String)session.getAttribute("veri");
+         if(adminService.getpwd(account).equals(upact)){
+            adminService.userdel(account);
+            session.setAttribute("veri",null);
+            return "0";
+         }else{
+            return "1";
+         }
     }
 }
