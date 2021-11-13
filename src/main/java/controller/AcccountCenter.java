@@ -51,14 +51,11 @@ public class AcccountCenter {
 
     @ResponseBody
     @RequestMapping("deluser")
-    public String deluser(HttpSession session,String upact){
+    public void deluser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
          if(adminService.getpwd(account).equals(upact)){
             adminService.userdel(account);
             session.setAttribute("veri",null);
-            return "0";
-         }else{
-            return "1";
          }
     }
 }

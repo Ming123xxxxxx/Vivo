@@ -33,4 +33,14 @@ public class IndexAction {
         return "index";
     }
 
+    @ResponseBody
+    @RequestMapping("dact")
+    public String dact(HttpSession session){
+        if(null==session.getAttribute("veri")||"fail".equals(session.getAttribute("veri"))){
+            return "http://localhost:8080/Vivo_war_exploded/";
+        }else{
+            return "0";
+        }
+    }
+
 }
