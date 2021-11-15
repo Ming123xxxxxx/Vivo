@@ -58,4 +58,14 @@ public class AcccountCenter {
             session.setAttribute("veri",null);
          }
     }
+    @ResponseBody
+    @RequestMapping("upuser")
+    public String upuser(HttpSession session,String upact){
+        String account=(String)session.getAttribute("veri");
+        if(adminService.getpwd(account).equals(upact)){
+            return "http://localhost:8080/Vivo_war_exploded/registerinfo/register.action";
+        }else{
+            return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+        }
+    }
 }

@@ -89,3 +89,11 @@ body{
     width: 500px;
     height: 40px;
 }
+.upform{
+    position:  relative;
+    top:40%;
+    left: 30%;
+    width: 600px;
+    height: 700px;
+    display: none;
+}

@@ -40,8 +40,15 @@ public class RegisterInfo {
 
     @RequestMapping("adduser")
     public String adduser(String username, String account, String pwd, HttpSession session) {
-        Register register = new Register(username,account,pwd);
-        adminService.adduser(register);
+        if(session.getAttribute("veri")==null||"fail".equals(session.getAttribute("veri"))){
+            Register register = new Register(username,account,pwd);
+            adminService.adduser(register);
+        }else {
+             int p=adminService.updateuser(username,account,pwd,(String)session.getAttribute("veri"));
+             if(p>0){
+                 session.setAttribute("veri",account);
+             }
+        }
         return "index";
     }
 

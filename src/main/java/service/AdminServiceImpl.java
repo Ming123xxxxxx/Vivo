@@ -49,4 +49,10 @@ public class AdminServiceImpl  implements AdminService {
     public String getpwd(String account) {
         return adminMapper.getpwd(account);
     }
+
+    @Override
+    public int updateuser(String username, String account, String pwd, String act) {
+        return adminMapper.updateuser(username,account,pwd,act);
+    }
+
 }

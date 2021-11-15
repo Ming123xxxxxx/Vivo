@@ -59,6 +59,18 @@
                         $("#upuser").show()
                 })
 
+                $("#upuser").click(function () {
+                    $.ajax({
+                        url:`${pageContext.request.contextPath}/atcenter/upuser`,
+                        data:{
+                            "upact":$("#upact").val()
+                        },
+                        success:function (data) {
+                            window.location.href=data
+                        }
+                    })
+                })
+
                 $("#ccells").click(function () {
                      $.ajax({
                          url:`${pageContext.request.contextPath}/atcenter/deluser`,
@@ -106,9 +118,10 @@
 
         <form  method="post" id="forms">
         <input type="password" placeholder="    请输入密码(>6&&<12)" id="upact"><br>
-        <input type="submit" value="注销" style="background: red;color: white" id="ccells"><br>
+        <input type="submit" value="注销" style="background: red;color: white" id="ccells">
         <input type="submit" value="修改" style="background: #4370ff;color: white" id="upuser"><br>
         <button id="butt">返回</button>
         </form>
+
 </body>
 </html>

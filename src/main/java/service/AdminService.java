@@ -1,5 +1,6 @@
 package service;
 
+import org.apache.ibatis.annotations.Param;
 import pojo.Register;
 
 /**
@@ -14,4 +15,5 @@ public interface AdminService {
     Register pikeupinformation(String account);
     int userdel(String account);
     String getpwd(String account);
+    int updateuser(String username, String account,  String pwd, String act);
 }
