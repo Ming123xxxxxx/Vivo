@@ -1,5 +1,6 @@
 package controller;
 
+import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -40,10 +41,11 @@ public class RegisterInfo {
 
     @RequestMapping("adduser")
     public String adduser(String username, String account, String pwd, HttpSession session) {
-        if(session.getAttribute("veri")==null||"fail".equals(session.getAttribute("veri"))){
+        System.out.println("pd:------------"+session.getAttribute("tf"));
+        if(session.getAttribute("veri")==null&&"succ".equals(session.getAttribute("tf"))){
             Register register = new Register(username,account,pwd);
             adminService.adduser(register);
-        }else {
+        }else if("succ".equals(session.getAttribute("tf"))) {
              int p=adminService.updateuser(username,account,pwd,(String)session.getAttribute("veri"));
              if(p>0){
                  session.setAttribute("veri",account);
@@ -54,7 +56,7 @@ public class RegisterInfo {
 
     @ResponseBody
     @RequestMapping("/varifaction")
-    public List var(String name, String act, String pwd, String rpwd){
+    public List var(String name, String act, String pwd, String rpwd,HttpSession session){
         Map map =new HashMap();
         Map map1 =new HashMap();
         Map map2 =new HashMap();
@@ -133,6 +135,12 @@ public class RegisterInfo {
         list.add(map1);
         list.add(map2);
         list.add(map3);
+        session.setAttribute("tf","succ");
+        for(int i=0;i<list.size();i++){
+            if(!list.get(i).get("color").equals("aquamarine")){
+                session.setAttribute("tf",null);
+            }
+        }
 
         return list;
     }

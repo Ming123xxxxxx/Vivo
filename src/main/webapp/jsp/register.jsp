@@ -13,6 +13,9 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript">
             $(function () {
+                window.onload=function(){
+                    $("#sus").attr("disabled","disabled")
+                }
                 $("input").blur(
                     function () {
                         $.ajax({
@@ -67,6 +70,7 @@
          <a href="${pageContext.request.contextPath}/homepage/index"> <span class="logo"><img src="${pageContext.request.contextPath}/img/logo.png"></span></a>
 
          <form action="${pageContext.request.contextPath}/registerinfo/adduser" method="post">
+
              <h1>账号注册</h1>
              <input id="name" type="text" placeholder="    请输入用户名(<6位)" class="input_register" name="username" onkeyup="this.value=this.value.replace(/\s+/g,'')">
 
@@ -82,7 +86,8 @@
              <span id="s4"></span>
              <input type="checkbox" class="sel"><span class="conf">我已阅读并接受 <a href="javascrpit:;"> 《服务协议》 </a> 和 <a href="javascrpit:;"> 《隐私政策》</隐私政策> </a>
              <br>
-             <input type="submit" value="注册" class="sub" disabled="true">
+             <input type="submit" value="注册" class="sub" id="sus">
+
          </form>
 
      </div>
