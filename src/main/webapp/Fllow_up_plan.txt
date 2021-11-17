@@ -1,0 +1,3 @@
+后续计划:
+1.index.jsp显示点击率高的手机,排名从高到低,使用Redis的Z-set实现,每点击一次手机则评分加1(zincrby key 1 value )
+2.。。。

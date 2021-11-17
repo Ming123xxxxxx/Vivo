@@ -33,8 +33,8 @@ public class SignIn {
     @RequestMapping("/ver")
     public List ver(String account, String pwd, String code,HttpSession session){
         List list =new ArrayList();
-        String suc="http://localhost:8080/Vivo_war_exploded/homepage/index";
-        String def="http://localhost:8080/Vivo_war_exploded/log/on";
+        String suc="http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+        String def=null;
         String s="000";
         String noac="001";
         String noco="002";

@@ -51,11 +51,14 @@ public class AcccountCenter {
 
     @ResponseBody
     @RequestMapping("deluser")
-    public void deluser(HttpSession session,String upact){
+    public String deluser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
          if(adminService.getpwd(account).equals(upact)){
             adminService.userdel(account);
             session.setAttribute("veri",null);
+            return null;
+         }else{
+            return "0";
          }
     }
     @ResponseBody
@@ -65,7 +68,7 @@ public class AcccountCenter {
         if(adminService.getpwd(account).equals(upact)){
             return "http://localhost:8080/Vivo_war_exploded/registerinfo/register.action";
         }else{
-            return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+            return "0";
         }
     }
 }

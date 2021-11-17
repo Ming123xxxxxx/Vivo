@@ -22,21 +22,26 @@
                    );
                    $("#sub").click(function () {
                                $.ajax({
-                                   url:`${pageContext.request.contextPath}/log/ver`,
                                    type:"post",
+                                   url:`${pageContext.request.contextPath}/log/ver`,
                                    data:{
                                        "account":$("#act").val(),
                                        "pwd":$("#pwd").val(),
                                        "code":$("#code").val()
                                    },
                                    success:function (data) {
-                                    $("form").removeAttr("onsubmit");
                                     if (data[1]=="001"){
+                                        $("#pwd").val(""),
+                                        $("#code").val(""),
                                         alert("账号或密码错误");
                                     }else if (data[1]=="002") {
+                                        $("#pwd").val(""),
+                                        $("#code").val(""),
                                         alert("验证码错误")
+                                    }else if(data[1]=="000"){
+                                        window.location.href=data[0];
                                     }
-                                    window.location.href=data[0];
+
                                    }
                                })
                    })
@@ -52,13 +57,13 @@
                          <a href="${pageContext.request.contextPath}/homepage/index"><img src="${pageContext.request.contextPath}/img/logo.png" class="h"></a>
                          <p>登录</p>
                           <div class="sig">
-                             <form method="post" onsubmit="return false">
+                             <div>
                                  <input type="text" placeholder="       请输入账号" name="account" id="act"><br>
                                  <input type="password" placeholder="       请输入密码" name="pwd" id="pwd"><br>
                                  <input type="text" placeholder="       请输入验证码" style="width: 240px" name="code" id="code">
                                  <img src="${pageContext.request.contextPath}/kaptcha.jpg" style="height:44px;width:120px;position: relative;top: 17px;right: 5px" id="codes"/> <br>
                                  <input type="submit" value="登录" style="background-color: #4375ff " id="sub">
-                             </form>
+                             </div>
                               <a href="${pageContext.request.contextPath}/registerinfo/register"><button>注册vivo账号</button></a>
                           </div>
                      </div>

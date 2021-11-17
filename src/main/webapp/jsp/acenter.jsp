@@ -61,24 +61,40 @@
 
                 $("#upuser").click(function () {
                     $.ajax({
+                        type:"post",
                         url:`${pageContext.request.contextPath}/atcenter/upuser`,
                         data:{
                             "upact":$("#upact").val()
                         },
+                        dataType: "text",
                         success:function (data) {
-                            window.location.href=data
+                           if(data!="0"){
+                               window.location.href=data
+                           }else{
+                               alert("密码错误")
+                           }
                         }
                     })
                 })
 
                 $("#ccells").click(function () {
                      $.ajax({
+                         type:"post",
                          url:`${pageContext.request.contextPath}/atcenter/deluser`,
                          data:{
                              "upact":$("#upact").val()
+                         },
+                         dataType: "text",
+                         success:function (data) {
+                              if (data=="0"){
+                                alert("密码错误")
+                              }
                          }
                      })
                 })
+               $("#butt").click(function () {
+                   window.location.href="http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action"
+               })
         })
     </script>
 </head>
@@ -116,12 +132,12 @@
             </div>
         </div>
 
-        <form  method="post" id="forms">
+        <div id="forms">
         <input type="password" placeholder="    请输入密码(>6&&<12)" id="upact"><br>
         <input type="submit" value="注销" style="background: red;color: white" id="ccells">
         <input type="submit" value="修改" style="background: #4370ff;color: white" id="upuser"><br>
         <button id="butt">返回</button>
-        </form>
+        </div>
 
 </body>
 </html>

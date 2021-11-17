@@ -12,10 +12,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript">
+
+        window.onload=function(){
+            $("#sus").attr("disabled","disabled")
+            var i=<%=session.getAttribute("veri")%>
+            if(i!=null&&"fail"!=i)  {
+                $("#reorup").text("修改信息");
+            }else{
+                $("#reorup").text("用户注册");
+            }
+        }
             $(function () {
-                window.onload=function(){
-                    $("#sus").attr("disabled","disabled")
-                }
                 $("input").blur(
                     function () {
                         $.ajax({
@@ -71,7 +78,7 @@
 
          <form action="${pageContext.request.contextPath}/registerinfo/adduser" method="post">
 
-             <h1>账号注册</h1>
+             <h1 id="reorup"></h1>
              <input id="name" type="text" placeholder="    请输入用户名(<6位)" class="input_register" name="username" onkeyup="this.value=this.value.replace(/\s+/g,'')">
 
              <span id="s1"></span>

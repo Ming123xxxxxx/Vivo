@@ -51,6 +51,7 @@ public class RegisterInfo {
                  session.setAttribute("veri",account);
              }
         }
+        session.setAttribute("tf",null);
         return "index";
     }
 

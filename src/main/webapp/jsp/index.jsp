@@ -28,9 +28,9 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
     <script type="text/javascript">
+
        window.onload=function () {
            var p=<%=session.getAttribute("veri")%>;
-           console.log("p="+p);
            if(p!="fail"&&p!=null){
                $("#s1").hide();
                $("#s2").hide();
@@ -55,6 +55,7 @@
                    })
            })
        })
+
     </script>
 <%--    <script type="text/javascript">--%>
 <%--        $(function () {--%>
