@@ -39,20 +39,23 @@ public class RegisterInfo {
         return "index";
     }
 
+    @ResponseBody
     @RequestMapping("adduser")
     public String adduser(String username, String account, String pwd, HttpSession session) {
-        System.out.println("pd:------------"+session.getAttribute("tf"));
         if(session.getAttribute("veri")==null&&"succ".equals(session.getAttribute("tf"))){
             Register register = new Register(username,account,pwd);
             adminService.adduser(register);
-        }else if("succ".equals(session.getAttribute("tf"))) {
-             int p=adminService.updateuser(username,account,pwd,(String)session.getAttribute("veri"));
-             if(p>0){
-                 session.setAttribute("veri",account);
-             }
+            session.setAttribute("tf",null);
+            return "http://localhost:8080/Vivo_war_exploded/";
+        }else if("succ".equals(session.getAttribute("tf"))&&session.getAttribute("veri")!=null) {
+            int p=adminService.updateuser(username,pwd,(String)session.getAttribute("veri"));
+            session.setAttribute("tf",null);
+            return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+        }else{
+            session.setAttribute("tf",null);
+            return null;
         }
-        session.setAttribute("tf",null);
-        return "index";
+
     }
 
     @ResponseBody
@@ -138,6 +141,9 @@ public class RegisterInfo {
         list.add(map3);
         session.setAttribute("tf","succ");
         for(int i=0;i<list.size();i++){
+            if(i==1&&session.getAttribute("veri")!=null){
+                continue;
+            }
             if(!list.get(i).get("color").equals("aquamarine")){
                 session.setAttribute("tf",null);
             }

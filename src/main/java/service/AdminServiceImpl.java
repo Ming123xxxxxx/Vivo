@@ -51,8 +51,8 @@ public class AdminServiceImpl  implements AdminService {
     }
 
     @Override
-    public int updateuser(String username, String account, String pwd, String act) {
-        return adminMapper.updateuser(username,account,pwd,act);
+    public int updateuser(String username, String pwd, String act) {
+        return adminMapper.updateuser(username,pwd,act);
     }
 
 }

@@ -28,6 +28,6 @@
     </delete>
 
     <update id="updateuser" parameterType="string">
-        update userinfo set username=#{username},account=#{account},pwd=#{pwd} where account=#{act}
+        update userinfo set username=#{username},pwd=#{pwd} where account=#{act}
     </update>
 </mapper>

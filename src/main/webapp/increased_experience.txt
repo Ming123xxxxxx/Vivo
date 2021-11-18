@@ -1,0 +1,2 @@
+1.信息提交不一定外层用form,可以使用div之类,防止form导致的success第一次无法执行(暂未知晓为何如此)
+2.AJax与后端交互时,后端的方法上必须有@ResponseBody

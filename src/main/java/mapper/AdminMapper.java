@@ -21,5 +21,5 @@ public interface AdminMapper {
 
     String getpwd(@Param("account") String account);
 
-    int updateuser(@Param("username") String username,@Param("account") String account, @Param("pwd") String pwd,@Param("act") String act);
+    int updateuser(@Param("username") String username, @Param("pwd") String pwd,@Param("act") String act);
 }

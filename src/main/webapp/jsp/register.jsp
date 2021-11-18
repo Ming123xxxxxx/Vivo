@@ -14,16 +14,18 @@
     <script type="text/javascript">
 
         window.onload=function(){
-            $("#sus").attr("disabled","disabled")
             var i=<%=session.getAttribute("veri")%>
             if(i!=null&&"fail"!=i)  {
-                $("#reorup").text("修改信息");
+                $("#reorup").text("修改信息")
+                $("#sus").val("修改")
+                $("#act").hide()
+                $("#s2").hide()
             }else{
-                $("#reorup").text("用户注册");
+                $("#reorup").text("用户注册")
             }
         }
             $(function () {
-                $("input").blur(
+                $("#sus").click(
                     function () {
                         $.ajax({
                             url:"${pageContext.request.contextPath}/registerinfo/varifaction",
@@ -49,16 +51,53 @@
                                     $("#s3").text(data[2].text).css("color",data[2].color,"font-size","10px"),
                                     $("#s4").text(data[3].text).css("color",data[3].color,"font-size","10px")
 
+                                    var p=<%=session.getAttribute("veri")%>
+
                                     for(var i=0;i<4;i++){
+                                        if(i==1&&p!=null){
+                                            continue;
+                                        }
                                         if(data[i].color=="#ea8585"){
                                              break;
                                         }
                                     }
 
-                                    if($("input[type='checkbox']").attr('checked')=="checked"&&i==4){
-                                       $(".sub").removeAttr("disabled");
+                                    if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4)&&p==null) {
+                                        alert("注册成功")
+                                        $.ajax({
+                                            url:"${pageContext.request.contextPath}/registerinfo/adduser",
+                                            data:{
+                                                "username":$("#name").val(),
+                                                "account":$("#act").val(),
+                                                "pwd":$("#pwd").val(),
+                                            },
+                                            success:function (data) {
+                                                if(data!=null){
+                                                    window.location.href=data;
+                                                }
+                                            }
+                                        })
+
+                                    }else if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4&&p!=null)){
+                                        alert("修改成功")
+                                        $.ajax({
+                                            url:"${pageContext.request.contextPath}/registerinfo/adduser",
+                                            data:{
+                                                "username":$("#name").val(),
+                                                "account":$("#act").val(),
+                                                "pwd":$("#pwd").val(),
+                                            },
+                                            success:function (data) {
+                                                if(data!=null){
+                                                    window.location.href=data;
+                                                }
+                                            }
+                                        })
+
+                                    } else if((($("input[type='checkbox']").attr('checked')!="checked"||i<4)&&p!=null)){
+                                        alert("修改失败")
                                     }else{
-                                        $(".sub").attr("disabled","disabled");
+                                        alert("注册失败")
                                     }
 
                             },
@@ -76,7 +115,7 @@
 
          <a href="${pageContext.request.contextPath}/homepage/index"> <span class="logo"><img src="${pageContext.request.contextPath}/img/logo.png"></span></a>
 
-         <form action="${pageContext.request.contextPath}/registerinfo/adduser" method="post">
+         <div>
 
              <h1 id="reorup"></h1>
              <input id="name" type="text" placeholder="    请输入用户名(<6位)" class="input_register" name="username" onkeyup="this.value=this.value.replace(/\s+/g,'')">
@@ -91,11 +130,12 @@
              <input id="rpwd" type="password"  placeholder="    请确认密码" class="input_register" onkeyup="this.value=this.value.replace(/\s+/g,'')">
 
              <span id="s4"></span>
-             <input type="checkbox" class="sel"><span class="conf">我已阅读并接受 <a href="javascrpit:;"> 《服务协议》 </a> 和 <a href="javascrpit:;"> 《隐私政策》</隐私政策> </a>
+             <input type="checkbox" class="sel">
+             <span class="conf">我已阅读并接受 <a href="javascrpit:;"> 《服务协议》 </a> 和 <a href="javascrpit:;"> 《隐私政策》</隐私政策> </a></span>
              <br>
              <input type="submit" value="注册" class="sub" id="sus">
 
-         </form>
+         </div>
 
      </div>
 

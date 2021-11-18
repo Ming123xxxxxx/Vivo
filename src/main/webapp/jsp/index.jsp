@@ -30,7 +30,7 @@
     <script type="text/javascript">
 
        window.onload=function () {
-           var p=<%=session.getAttribute("veri")%>;
+           var p=<%=session.getAttribute("veri")%>
            if(p!="fail"&&p!=null){
                $("#s1").hide();
                $("#s2").hide();
