@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.AdminService;
+import utils.MD5Util;
+
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -24,6 +26,9 @@ public class SignIn {
     @Qualifier("AdminServiceImpl")
     private AdminService adminService;
 
+    @Autowired
+    private MD5Util md5Util;
+
     @RequestMapping("on")
     public String on(){
         return "sign";
@@ -39,7 +44,7 @@ public class SignIn {
         String noac="001";
         String noco="002";
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
-            if(adminService.queryaccount(account,pwd)==1){
+            if(adminService.queryaccount(account,md5Util.getMD5(pwd))==1){
                 list.add(suc);
                 list.add(s);
                 session.setAttribute("veri",account);
@@ -47,13 +52,13 @@ public class SignIn {
             }else{
                 list.add(def);
                 list.add(noac);
-                session.setAttribute("veri","fail");
+                session.setAttribute("veri",null);
                 return list;
             }
         }else{
                 list.add(def);
                 list.add(noco);
-                session.setAttribute("veri","fail");
+                session.setAttribute("veri",null);
                 return list;
         }
     }

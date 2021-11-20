@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Register;
 import service.AdminService;
+import utils.MD5Util;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -53,10 +54,10 @@ public class AcccountCenter {
     @RequestMapping("deluser")
     public String deluser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
-         if(adminService.getpwd(account).equals(upact)){
+         if(adminService.getpwd(account).equals(MD5Util.getMD5(upact))){
             adminService.userdel(account);
             session.setAttribute("veri",null);
-            return null;
+            return "http://localhost:8080/Vivo_war_exploded/";
          }else{
             return "0";
          }
@@ -65,7 +66,7 @@ public class AcccountCenter {
     @RequestMapping("upuser")
     public String upuser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
-        if(adminService.getpwd(account).equals(upact)){
+        if(adminService.getpwd(account).equals(MD5Util.getMD5(upact))){
             return "http://localhost:8080/Vivo_war_exploded/registerinfo/register.action";
         }else{
             return "0";

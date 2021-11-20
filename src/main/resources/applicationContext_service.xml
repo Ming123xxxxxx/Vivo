@@ -6,11 +6,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--设置业务逻辑层的包扫描器,目的是在指定的路径下,使用@Service注解的类,Spring负责创建对象,并添加依赖-->
-    <context:component-scan base-package="service"/>
+    <context:component-scan base-package="service,utils"/>
 
     <!--2.将我们所有的业务类，注入到Spring,可以通过配置或者注解实现-->
     <bean id="AdminServiceImpl" class="service.AdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
+    </bean>
+    <bean id="md5Util" class="utils.MD5Util">
     </bean>
 
     <!--设置事务管理器-->

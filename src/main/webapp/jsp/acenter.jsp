@@ -87,7 +87,10 @@
                          dataType: "text",
                          success:function (data) {
                               if (data=="0"){
-                                alert("密码错误")
+                                  alert("密码错误")
+                              }else{
+                                  alert("注销成功")
+                                  window.location.href=data
                               }
                          }
                      })

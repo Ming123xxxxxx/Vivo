@@ -33,10 +33,12 @@
                                     if (data[1]=="001"){
                                         $("#pwd").val(""),
                                         $("#code").val(""),
+                                        $("#codes").attr("src","${basePath}${pageContext.request.contextPath}/kaptcha.jpg?d="+new Date())
                                         alert("账号或密码错误");
                                     }else if (data[1]=="002") {
                                         $("#pwd").val(""),
                                         $("#code").val(""),
+                                        $("#codes").attr("src","${basePath}${pageContext.request.contextPath}/kaptcha.jpg?d="+new Date())
                                         alert("验证码错误")
                                     }else if(data[1]=="000"){
                                         window.location.href=data[0];

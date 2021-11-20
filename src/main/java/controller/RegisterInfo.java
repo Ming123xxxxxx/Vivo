@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Register;
 import service.AdminService;
+import utils.MD5Util;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class RegisterInfo {
     @Qualifier("AdminServiceImpl")
     private AdminService adminService;
 
+    @Autowired
+    private MD5Util md5Util;
+
     @RequestMapping("register")
     public String register(){
         return "register";
@@ -42,13 +46,14 @@ public class RegisterInfo {
     @ResponseBody
     @RequestMapping("adduser")
     public String adduser(String username, String account, String pwd, HttpSession session) {
+
         if(session.getAttribute("veri")==null&&"succ".equals(session.getAttribute("tf"))){
-            Register register = new Register(username,account,pwd);
+            Register register = new Register(username,account,md5Util.getMD5(pwd));
             adminService.adduser(register);
             session.setAttribute("tf",null);
             return "http://localhost:8080/Vivo_war_exploded/";
         }else if("succ".equals(session.getAttribute("tf"))&&session.getAttribute("veri")!=null) {
-            int p=adminService.updateuser(username,pwd,(String)session.getAttribute("veri"));
+            int p=adminService.updateuser(username,md5Util.getMD5(pwd),(String)session.getAttribute("veri"));
             session.setAttribute("tf",null);
             return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
         }else{

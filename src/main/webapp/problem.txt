@@ -1,5 +1,4 @@
 所需解决问题:
 1.将用户登录状况从session换成Redis存储
-2.register.jsp添加验证码
 
 
