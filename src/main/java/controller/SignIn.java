@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.AdminService;
 import utils.MD5Util;
+import utils.Redis;
+import utils.Times;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 import javax.servlet.http.HttpSession;
@@ -29,6 +31,12 @@ public class SignIn {
     @Autowired
     private MD5Util md5Util;
 
+    @Autowired
+    private Times times;
+
+    @Autowired
+    Redis redis;
+
     @RequestMapping("on")
     public String on(){
         return "sign";
@@ -45,9 +53,19 @@ public class SignIn {
         String noco="002";
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
             if(adminService.queryaccount(account,md5Util.getMD5(pwd))==1){
+                redis.setOnL(account);
                 list.add(suc);
                 list.add(s);
                 session.setAttribute("veri",account);
+
+
+
+                //登录成功则设置对应的时间的session
+                session.setAttribute("years",times.gety());
+                session.setAttribute("months",times.getm());
+                session.setAttribute("days",times.getd());
+
+                adminService.offtime(times.getymdhms(),account);
                 return list;
             }else{
                 list.add(def);

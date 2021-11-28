@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Register;
 import service.AdminService;
 import utils.MD5Util;
+import utils.Redis;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class AcccountCenter {
     @Autowired
     @Qualifier("AdminServiceImpl")
     AdminService adminService;
+
+    @Autowired
+    Redis redis;
 
     @RequestMapping("pinformation")
     public String info(){
@@ -55,6 +59,7 @@ public class AcccountCenter {
     public String deluser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
          if(adminService.getpwd(account).equals(MD5Util.getMD5(upact))){
+            redis.delkey((String)session.getAttribute("veri"));
             adminService.userdel(account);
             session.setAttribute("veri",null);
             return "http://localhost:8080/Vivo_war_exploded/";
@@ -62,6 +67,7 @@ public class AcccountCenter {
             return "0";
          }
     }
+
     @ResponseBody
     @RequestMapping("upuser")
     public String upuser(HttpSession session,String upact){

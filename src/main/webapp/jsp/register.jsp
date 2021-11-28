@@ -79,7 +79,6 @@
                                         })
 
                                     }else if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4&&p!=null)){
-                                        alert("修改成功")
                                         $.ajax({
                                             url:"${pageContext.request.contextPath}/registerinfo/adduser",
                                             data:{
@@ -88,8 +87,12 @@
                                                 "pwd":$("#pwd").val(),
                                             },
                                             success:function (data) {
-                                                if(data!=null){
+                                                if(data!=null&&data!="0"){
+                                                    alert("修改成功")
                                                     window.location.href=data;
+                                                }
+                                                if(data=="0"){
+                                                    alert("今日已经修改过了,请明日再来修改")
                                                 }
                                             }
                                         })

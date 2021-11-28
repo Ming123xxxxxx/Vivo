@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Register;
 import service.AdminService;
 import utils.MD5Util;
+import utils.Times;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class RegisterInfo {
     @Autowired
     private MD5Util md5Util;
 
+    @Autowired
+    private Times times;
+
     @RequestMapping("register")
     public String register(){
         return "register";
@@ -48,14 +52,22 @@ public class RegisterInfo {
     public String adduser(String username, String account, String pwd, HttpSession session) {
 
         if(session.getAttribute("veri")==null&&"succ".equals(session.getAttribute("tf"))){
-            Register register = new Register(username,account,md5Util.getMD5(pwd));
+            Register register = new Register(username,account,md5Util.getMD5(pwd),times.getymd(),null,null);
             adminService.adduser(register);
             session.setAttribute("tf",null);
             return "http://localhost:8080/Vivo_war_exploded/";
         }else if("succ".equals(session.getAttribute("tf"))&&session.getAttribute("veri")!=null) {
-            int p=adminService.updateuser(username,md5Util.getMD5(pwd),(String)session.getAttribute("veri"));
-            session.setAttribute("tf",null);
-            return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+
+            if(!times.getymd().equals(adminService.pikeupinformation((String)session.getAttribute("veri")).getModifytime())){
+                adminService.updateuser(username,md5Util.getMD5(pwd),times.getymd(),(String)session.getAttribute("veri"));
+                session.setAttribute("tf",null);
+                return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+            }else{
+                session.setAttribute("tf",null);
+             return "0";
+            }
+
+
         }else{
             session.setAttribute("tf",null);
             return null;
@@ -151,6 +163,7 @@ public class RegisterInfo {
             }
             if(!list.get(i).get("color").equals("aquamarine")){
                 session.setAttribute("tf",null);
+                break;
             }
         }
 

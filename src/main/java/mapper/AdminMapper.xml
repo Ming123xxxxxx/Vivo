@@ -4,7 +4,7 @@
 <mapper namespace="mapper.AdminMapper">
 
     <insert id="adduser" parameterType="Register">
-        insert into userinfo values (0,#{username},#{account},#{pwd})
+        insert into userinfo values (0,#{username},#{account},#{pwd},#{regdate},#{modifytime},#{lastlogintime})
     </insert>
 
     <select id="queryone" parameterType="string" resultType="_int">
@@ -28,6 +28,11 @@
     </delete>
 
     <update id="updateuser" parameterType="string">
-        update userinfo set username=#{username},pwd=#{pwd} where account=#{act}
+        update userinfo set username=#{username},pwd=#{pwd}, modifytime=#{modifytime}  where account=#{act}
     </update>
+
+    <update id="offtime" parameterType="string">
+        update userinfo set lastlogintime=#{lastlogintime} where account=#{account}
+    </update>
+
 </mapper>

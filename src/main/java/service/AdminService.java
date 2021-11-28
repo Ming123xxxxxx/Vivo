@@ -15,5 +15,6 @@ public interface AdminService {
     Register pikeupinformation(String account);
     int userdel(String account);
     String getpwd(String account);
-    int updateuser(String username,  String pwd, String act);
+    int updateuser(String username,  String pwd, String modifytime,String act);
+    int offtime(String lastlogintime,String account);
 }

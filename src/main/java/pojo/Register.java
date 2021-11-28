@@ -16,4 +16,7 @@ public class Register {
     private String username;
     private String account;
     private String pwd;
+    private String regdate;
+    private String modifytime;
+    private String lastlogintime;
 }

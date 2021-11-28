@@ -8,11 +8,12 @@
 body{
     background-color: #f7f7f7;
 }
+
 .bottom{
+    margin-top: 100px;
     width: 860px;
     height: 800px;
     background-color: #ffffff;
-    margin-top:100px ;
 }
 .bottom .top .blank{
     width: 100%;
@@ -97,3 +98,4 @@ body{
     height: 700px;
     display: none;
 }
+

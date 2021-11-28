@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.AdminService;
+import utils.Redis;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,10 +23,13 @@ public class Exit {
     @Qualifier("AdminServiceImpl")
     AdminService adminService;
 
+    @Autowired
+    Redis redis;
 
     @ResponseBody
     @RequestMapping("ea")
     public void ea(HttpSession session){
-         session.setAttribute("veri",null);
+        redis.setOffL((String)session.getAttribute("veri"));
+        session.setAttribute("veri",null);
     }
 }

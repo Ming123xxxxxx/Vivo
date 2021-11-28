@@ -31,52 +31,246 @@
 
        window.onload=function () {
            var p=<%=session.getAttribute("veri")%>
-           if(p!="fail"&&p!=null){
+           if(p!=null){
                $("#s1").hide();
                $("#s2").hide();
                $("#s3").show();
                $("#s4").show();
+               $("#s5").show()
+               $(".top_bar .register_sign").css({
+                   "height":"120px"
+               })
+
+               $.ajax({
+                   url:`${pageContext.request.contextPath}/homepage/attendance`,
+                   success:function (data) {
+                       $.ajax({
+                           url:`${pageContext.request.contextPath}/homepage/currenttime`,
+                           success:function (data) {
+                               $(".calendar_frame .top_bars span:nth-child(2)").html(data[0]+" / "+data[1]+" / "+data[2])
+                           }
+                       })
+                       var p=data.length;
+                       var l=0;
+                       var q=0;
+                       for(var i=1;i<=p;i++){
+
+                           if(data[i-1]==-2){
+                               $(".calendar_frame .ool").append("<span class='day'></span>")
+                               l++
+                           }else{
+                               q=i-l
+                               $(".calendar_frame .ool").append("<span class='day'>"+q+"</span>")
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("l")
+                           }
+                           if(i/7==0){
+                               $(".calendar_frame .ool").append("<br>")
+                           }
+                           if(data[i-1]==-1){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("s")
+                           }else if(data[i-1]==0){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("p")
+                           }else if(data[i-1]==1){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("w")
+                           }
+                       }
+                   }
+               })
+
            }else{
                $("#s3").hide();
                $("#s4").hide();
+               $("#s5").hide();
                $("#s1").show();
-               $("#s2").show();
+               $("#s2").show()
+               $(".top_bar .register_sign").css({
+                   "height":"80px"
+               })
            }
+           $(".calendar_frame").hide();
        }
 
+
        $(function () {
+
+           $(".calendar_frame .top_bars span:nth-child(2)").click(function () {
+                   $.ajax({
+                       url:`${pageContext.request.contextPath}/homepage/cus`,
+                       success:function () {
+                           $.ajax({
+                               url:`${pageContext.request.contextPath}/homepage/attendance`,
+                               success:function (data) {
+                                   $(".calendar_frame .ool").empty()
+                                   $.ajax({
+                                       url:`${pageContext.request.contextPath}/homepage/currenttime`,
+                                       success:function (data) {
+                                           $(".calendar_frame .top_bars span:nth-child(2)").html(data[0]+" / "+data[1]+" / "+data[2])
+                                       }
+                                   })
+
+                                   var p=data.length;
+                                   var l=0;
+                                   var q=0;
+                                   for(var i=1;i<=p;i++){
+                                       if(data[i-1]==-2){
+                                           $(".calendar_frame .ool").append("<span class='day'></span>")
+                                           l++
+                                       }else{
+                                           q=i-l
+                                           $(".calendar_frame .ool").append("<span class='day'>"+q+"</span>")
+                                           $(".calendar_frame .ool span:nth-child("+i+")").addClass("l")
+                                       }
+                                       if(i/7==0){
+                                           $(".calendar_frame .ool").append("<br>")
+                                       }
+                                       if(data[i-1]==-1){
+                                           $(".calendar_frame .ool span:nth-child("+i+")").addClass("s")
+                                       }else if(data[i-1]==0){
+                                           $(".calendar_frame .ool span:nth-child("+i+")").addClass("p")
+                                       }else if(data[i-1]==1){
+                                           $(".calendar_frame .ool span:nth-child("+i+")").addClass("w")
+                                       }
+                                   }
+                               }
+                           })
+                       }
+                   })
+           })
+
+           $(".calendar_frame .top_bars span:nth-child(1)").click(function () {
+               $.ajax({
+                   url:`${pageContext.request.contextPath}/homepage/attendance`,
+                   data:{
+                       "swicths":"-1",
+                   },
+                   success:function (data) {
+                       $(".calendar_frame .ool").empty()
+
+                       $.ajax({
+                           url:`${pageContext.request.contextPath}/homepage/currenttime`,
+                           success:function (data) {
+                               $(".calendar_frame .top_bars span:nth-child(2)").html(data[0]+" / "+data[1]+" / "+data[2])
+                           }
+                       })
+
+                       var p=data.length;
+                       var l=0;
+                       var q=0;
+                       for(var i=1;i<=p;i++){
+                           if(data[i-1]==-2){
+                               $(".calendar_frame .ool").append("<span class='day'></span>")
+                               l++;
+                           }else{
+                               q=i-l
+                               $(".calendar_frame .ool").append("<span class='day'>"+q+"</span>")
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("l")
+                           }
+                           if(i/7==0){
+                               $(".calendar_frame .ool").append("<br>")
+                           }
+                           if(data[i-1]==-1){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("s")
+                           }else if(data[i-1]==0){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("p")
+                           }else if(data[i-1]==1){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("w")
+                           }
+                       }
+                   }
+               })
+           })
+
+           $(".calendar_frame .top_bars span:nth-child(3)").click(function () {
+               $.ajax({
+                   url:`${pageContext.request.contextPath}/homepage/attendance`,
+                   data:{
+                       "swicths":"1",
+                   },
+                   success:function (data) {
+                       $(".calendar_frame .ool").empty()
+                       $.ajax({
+                           url:`${pageContext.request.contextPath}/homepage/currenttime`,
+                           success:function (data) {
+                               $(".calendar_frame .top_bars span:nth-child(2)").html(data[0]+" / "+data[1]+" / "+data[2])
+                           }
+                       })
+                       var p=data.length;
+                       var l=0;
+                       var q=0;
+                       for(var i=1;i<=p;i++){
+                           q=i;
+                           if(data[i-1]==-2){
+                               $(".calendar_frame .ool").append("<span class='day'></span>")
+                               l++;
+                           }else{
+                               q=i-l;
+                               $(".calendar_frame .ool").append("<span class='day'>"+q+"</span>")
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("l")
+                           }
+                           if(i/7==0){
+                               $(".calendar_frame .ool").append("<br>")
+                           }
+                           if(data[i-1]==-1){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("s")
+                           }else if(data[i-1]==0){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("p")
+                           }else if(data[i-1]==1){
+                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("w")
+                           }
+                       }
+                   }
+               })
+           })
+
+           $("#s5").click(function () {
+               $(".calendar_frame").show()
+           })
+
+           $("#ret").click(function () {
+               $(".calendar_frame").hide()
+           })
+
            $("#s4").click(function () {
                    $.ajax({
                        url:`${pageContext.request.contextPath}/exitac/ea`,
                        success:function(){
                            window.location.href="http://localhost:8080/Vivo_war_exploded/"
                        }
-
                    })
            })
+
+           $(".calendar_frame .ool .l").click(function () {
+               $(this).addClass("cli").siblings().removeClass("cli")
+           })
+
+           $(".calendar_frame .ool .s").click(function () {
+               $(".calendar_frame .atten span:nth-child(1)").text("补签")
+               $(".calendar_frame .atten span:nth-child(1)").css({
+                   "background":"red",
+                   "color":"white"
+               })
+           })
+
+           $(".calendar_frame .ool .w").click(function () {
+               $(".calendar_frame .atten span:nth-child(1)").text("已签到")
+               $(".calendar_frame .atten span:nth-child(1)").css({
+                   "background":"#e2e2e2",
+                   "color":"white"
+               })
+           })
+
+           $(".calendar_frame .ool .s").click(function () {
+               $(".calendar_frame .atten span:nth-child(1)").html("签到")
+               $(".calendar_frame .atten span:nth-child(1)").css({
+                   "background":"#green",
+                   "color":"white"
+               })
+           })
+
        })
 
     </script>
-<%--    <script type="text/javascript">--%>
-<%--        $(function () {--%>
-<%--            $("#seri #ddwon li").mouseover(function () {--%>
-<%--                $("#seri").stop().animate({--%>
-<%--                    height:"492px",--%>
-<%--                    borderRadius:"0 0 20px 20px",--%>
-<%--                },"flow")--%>
-<%--                console.log("pp:"+$("#seri").css("height"))--%>
-<%--                console.log("xx:"+$("#seri").css("height").value=="492px")--%>
-<%--            })--%>
 
-<%--         if($("#seri").css("height")=="492px"){--%>
-<%--             $("#seri #ddwon li").mouseout(function () {--%>
-<%--                 $("#seri").stop().animate({--%>
-<%--                     height: "85px"--%>
-<%--                 }, "flow")--%>
-<%--             })--%>
-<%--          }--%>
-<%--        })--%>
-<%--    </script>--%>
 </head>
 <body>
       <div class="top_bar">
@@ -98,6 +292,7 @@
               <span id="s1" class="icom">  <a href="${pageContext.request.contextPath}/log/on">    登录</a></span>
               <span id="s2" class="icom">  <a href="${pageContext.request.contextPath}/registerinfo/register.action">   注册</a></span>
               <span id="s3" class="icom">  <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    账户中心</a></span>
+              <span id="s5" class="icom"> <a href="javascript:;">    签到</a></span>
               <span id="s4" class="icom">  <a href="javascript:;">   退出登录</a></span>
           </div>
 
@@ -123,6 +318,42 @@
 
       </div>
 
+      <script type="text/javascript">
+
+
+
+      </script>
+
+      <div class="calendar_frame" style="background: url(${pageContext.request.contextPath}/img/attendence.jpg) no-repeat;background-size:100% 100%">
+          <div class="top_bars">
+              <span>上个月</span>
+              <span></span>
+              <span>下个月</span>
+          </div>
+          <div class="hrs"></div>
+
+          <div class="week">
+              <span>一</span>
+              <span>二</span>
+              <span>三</span>
+              <span>四</span>
+              <span>五</span>
+              <span>六</span>
+              <span>七</span>
+          </div>
+
+          <div class="hrs"></div>
+
+          <div class="ool">
+
+          </div>
+
+          <div class="atten">
+              <span>签到</span>
+              <span id="ret">返回</span>
+          </div>
+
+      </div>
 
 </body>
 </html>

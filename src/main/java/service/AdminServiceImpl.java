@@ -50,9 +50,15 @@ public class AdminServiceImpl  implements AdminService {
         return adminMapper.getpwd(account);
     }
 
+
     @Override
-    public int updateuser(String username, String pwd, String act) {
-        return adminMapper.updateuser(username,pwd,act);
+    public int updateuser(String username, String pwd, String modifytime,String act) {
+        return adminMapper.updateuser(username,pwd,modifytime,act);
+    }
+
+    @Override
+    public int offtime(String lastlogintime, String account) {
+        return adminMapper.offtime(lastlogintime, account);
     }
 
 }
