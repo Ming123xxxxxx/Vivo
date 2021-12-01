@@ -36,10 +36,8 @@
                $("#s2").hide();
                $("#s3").show();
                $("#s4").show();
-               $("#s5").show()
-               $(".top_bar .register_sign").css({
-                   "height":"120px"
-               })
+               $("#s5").show();
+               $("#s6").hide();
 
                $.ajax({
                    url:`${pageContext.request.contextPath}/homepage/attendance`,
@@ -82,12 +80,11 @@
                $("#s4").hide();
                $("#s5").hide();
                $("#s1").show();
-               $("#s2").show()
-               $(".top_bar .register_sign").css({
-                   "height":"80px"
-               })
+               $("#s2").show();
+               $("#s6").show();
            }
            $(".calendar_frame").hide();
+
        }
 
 
@@ -138,6 +135,7 @@
            })
 
            $(".calendar_frame .top_bars span:nth-child(1)").click(function () {
+
                $.ajax({
                    url:`${pageContext.request.contextPath}/homepage/attendance`,
                    data:{
@@ -239,34 +237,17 @@
                    })
            })
 
+       })
+
+       $(function () {
+           //点击会给当前的class=.l的span添加.cli,其他除去cli
            $(".calendar_frame .ool .l").click(function () {
                $(this).addClass("cli").siblings().removeClass("cli")
            })
-
-           $(".calendar_frame .ool .s").click(function () {
-               $(".calendar_frame .atten span:nth-child(1)").text("补签")
-               $(".calendar_frame .atten span:nth-child(1)").css({
-                   "background":"red",
-                   "color":"white"
-               })
+           //点击此事件会出现补签事件
+           $(".calendar_frame .ool .p").click(function () {
+               console.log("ppppp")
            })
-
-           $(".calendar_frame .ool .w").click(function () {
-               $(".calendar_frame .atten span:nth-child(1)").text("已签到")
-               $(".calendar_frame .atten span:nth-child(1)").css({
-                   "background":"#e2e2e2",
-                   "color":"white"
-               })
-           })
-
-           $(".calendar_frame .ool .s").click(function () {
-               $(".calendar_frame .atten span:nth-child(1)").html("签到")
-               $(".calendar_frame .atten span:nth-child(1)").css({
-                   "background":"#green",
-                   "color":"white"
-               })
-           })
-
        })
 
     </script>
@@ -289,6 +270,7 @@
 
               <!--注册/登录-->
           <div class="register_sign">
+              <span id="s6" class="icom">  <a href="${pageContext.request.contextPath}/admin/jump">    管理员登录</a></span>
               <span id="s1" class="icom">  <a href="${pageContext.request.contextPath}/log/on">    登录</a></span>
               <span id="s2" class="icom">  <a href="${pageContext.request.contextPath}/registerinfo/register.action">   注册</a></span>
               <span id="s3" class="icom">  <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    账户中心</a></span>
@@ -349,7 +331,6 @@
           </div>
 
           <div class="atten">
-              <span>签到</span>
               <span id="ret">返回</span>
           </div>
 

@@ -12,6 +12,9 @@
     <bean id="AdminServiceImpl" class="service.AdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
     </bean>
+    <bean id="AdminInfoServiceImpl" class="service.AdminInfoServiceImpl">
+        <property name="adminInfoMapper" ref="adminInfoMapper"/>
+    </bean>
     <bean id="md5Util" class="utils.MD5Util"/>
 
     <bean id="redis" class="utils.Redis"/>

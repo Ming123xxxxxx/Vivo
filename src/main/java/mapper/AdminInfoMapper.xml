@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.AdminInfoMapper">
+
+    <select id="pikeupinformation" parameterType="string" resultType="_int">
+        select count(*) from admin where account=#{account} and pwd=#{pwd}
+    </select>
+
+    <update id="offtime" parameterType="string">
+        update admin set lastlogintime=#{lastlogintime} where account=#{account}
+    </update>
+
+</mapper>

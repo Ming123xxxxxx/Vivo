@@ -107,9 +107,9 @@ public class IndexAction {
 //       }else{
 //
 //       }
-        session.setAttribute("offset",intervel-times.getd());
+
         //获取当前日历的所有信息
-        List ainfo = redis.getMonthsArrendance((String) session.getAttribute("veri"), (int)session.getAttribute("offset"), years, months, numberDays, monthesWeek);
+        List ainfo = redis.getMonthsArrendance((String) session.getAttribute("veri"), intervel-times.getd(), years, months, numberDays, monthesWeek);
 
         return ainfo;
 

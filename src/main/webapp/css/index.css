@@ -46,7 +46,7 @@ body{
 
 .top_bar .register_sign{
     width: 200px;
-    height: 80px;
+    height: 120px;
     background-color: white;
     position: absolute;
     right: 4%;
@@ -160,14 +160,14 @@ body{
 }
 .calendar_frame .ool .p:hover{
     background-color: red;
-    color: white;
+    color: black;
 }
 .calendar_frame .ool .s:hover{
     background-color: #1ebbee;
     color: white;
 }
 .calendar_frame .ool .w{
-    background: url(../img/t.jpg) no-repeat;
+    background: url(../img/t.png) no-repeat;
     background-size: 100% 100%;
     opacity: 50;
     z-index: 1;
@@ -185,14 +185,12 @@ body{
 }
 .calendar_frame .atten span{
     display: inline-block;
-    width: 196px;
+    width: 100%;
     height: 33px;
     line-height: 30px;
     text-align: center;
 }
-.calendar_frame .atten span:nth-child(2){
-    width: 197px;
-}
+
 .calendar_frame .atten span:hover{
     background-color:#2675bf ;
     color: white;
