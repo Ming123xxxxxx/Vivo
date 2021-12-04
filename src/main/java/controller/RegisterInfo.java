@@ -10,6 +10,7 @@ import pojo.Register;
 import service.AdminService;
 import utils.MD5Util;
 import utils.Times;
+import utils.Urls;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class RegisterInfo {
     @Autowired
     private Times times;
 
+    @Autowired
+    Urls urls;
+
     @RequestMapping("register")
     public String register(){
         return "register";
@@ -52,16 +56,16 @@ public class RegisterInfo {
     public String adduser(String username, String account, String pwd, HttpSession session) {
 
         if(session.getAttribute("veri")==null&&"succ".equals(session.getAttribute("tf"))){
-            Register register = new Register(0,username,account,md5Util.getMD5(pwd),times.getymd(),null,null,0);
+            Register register = new Register(0,username,account,md5Util.getMD5(pwd),times.getymd(),null,null,2);
             adminService.adduser(register);
             session.setAttribute("tf",null);
-            return "http://localhost:8080/Vivo_war_exploded/";
+            return urls.index();
         }else if("succ".equals(session.getAttribute("tf"))&&session.getAttribute("veri")!=null) {
 
             if(!times.getymd().equals(adminService.pikeupinformation((String)session.getAttribute("veri")).getModifytime())){
                 adminService.updateuser(username,md5Util.getMD5(pwd),times.getymd(),(String)session.getAttribute("veri"));
                 session.setAttribute("tf",null);
-                return "http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+                return urls.acenter();
             }else{
                 session.setAttribute("tf",null);
              return "0";

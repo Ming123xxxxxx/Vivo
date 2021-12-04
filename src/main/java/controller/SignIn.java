@@ -9,6 +9,7 @@ import service.AdminService;
 import utils.MD5Util;
 import utils.Redis;
 import utils.Times;
+import utils.Urls;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 import javax.servlet.http.HttpSession;
@@ -35,6 +36,9 @@ public class SignIn {
     private Times times;
 
     @Autowired
+    Urls urls;
+
+    @Autowired
     Redis redis;
 
     @RequestMapping("on")
@@ -46,7 +50,7 @@ public class SignIn {
     @RequestMapping("/ver")
     public List ver(String account, String pwd, String code,HttpSession session){
         List list =new ArrayList();
-        String suc="http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action";
+        String suc=urls.acenter();
         String def=null;
         String s="000";
         String noac="001";
@@ -58,9 +62,6 @@ public class SignIn {
                 list.add(suc);
                 list.add(s);
                 session.setAttribute("veri",account);
-
-
-
                 //登录成功则设置对应的时间的session
                 session.setAttribute("years",times.gety());
                 session.setAttribute("months",times.getm());
@@ -71,13 +72,13 @@ public class SignIn {
             }else{
                 list.add(def);
                 list.add(noac);
-                session.setAttribute("veri",null);
+                session.setAttribute("veri",account);
                 return list;
             }
         }else{
                 list.add(def);
                 list.add(noco);
-                session.setAttribute("veri",null);
+                session.setAttribute("veri",account);
                 return list;
         }
     }

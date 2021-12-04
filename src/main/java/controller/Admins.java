@@ -12,6 +12,7 @@ import service.AdminInfoService;
 import service.AdminService;
 import utils.Redis;
 import utils.Times;
+import utils.Urls;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -40,6 +41,9 @@ public class Admins {
     Times times;
 
     @Autowired
+    Urls urls;
+
+    @Autowired
     Redis redis;
 
     @RequestMapping("/jump")
@@ -57,7 +61,7 @@ public class Admins {
 //            map.put("User_Online_Status",redis.OUser());
 //            map.put("User_All_Status",redis.currentperson());
 //            list.add(map);
-            List<Register> list = adminService.onandoff(0, 0, 6);
+            List<Register> list = adminService.onandoff(0, 0, 10);
 //            for(Register reg:onandoff){
 //                list.add(reg);
 //            }
@@ -69,11 +73,23 @@ public class Admins {
         }
     }
 
+    @RequestMapping("/toadmin")
+    public String td(HttpSession session,Model model){
+        session.setAttribute("admin",1);
+
+        List<Register> list = adminService.onandoff(0, 0, 10);
+
+        model.addAttribute("list",list);
+        return "admin";
+    }
+
     @ResponseBody
     @RequestMapping("on")
-    public String on(HttpSession session){
+    public String on(HttpSession session,Model model){
         if((int)session.getAttribute("admin")==1){
-            return "1";
+            List<Register> list = adminService.onandoff(0, 0, 10);
+            model.addAttribute("list",list);
+            return urls.admin();
         }else{
             return "0";
         }
@@ -94,5 +110,21 @@ public class Admins {
         }
         model.addAttribute("list",list);
         return map;
+    }
+
+    @RequestMapping("forcuoff")
+    public String ea(String account,HttpSession session){
+        adminService.onoffs(2,account);
+        redis.setOffL(account);
+        session.setAttribute(account,null);
+        return "redirect:/admin/toadmin";
+    }
+
+    @RequestMapping("delus")
+    public String delus(String account,HttpSession session){
+        redis.delkey(account);
+        adminService.userdel(account);
+        session.setAttribute(account,null);
+        return "redirect:/admin/toadmin";
     }
 }

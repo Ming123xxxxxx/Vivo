@@ -9,6 +9,7 @@ import pojo.Register;
 import service.AdminService;
 import utils.MD5Util;
 import utils.Redis;
+import utils.Urls;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -30,9 +31,18 @@ public class AcccountCenter {
     @Autowired
     Redis redis;
 
+    @Autowired
+    Urls urls;
+
     @RequestMapping("pinformation")
     public String info(){
         return "acenter";
+    }
+
+    @ResponseBody
+    @RequestMapping("toacenter")
+    public String toacenter(){
+        return urls.acenter();
     }
 
     @ResponseBody
@@ -62,7 +72,7 @@ public class AcccountCenter {
             redis.delkey((String)session.getAttribute("veri"));
             adminService.userdel(account);
             session.setAttribute("veri",null);
-            return "http://localhost:8080/Vivo_war_exploded/";
+            return urls.index();
          }else{
             return "0";
          }
@@ -73,7 +83,7 @@ public class AcccountCenter {
     public String upuser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
         if(adminService.getpwd(account).equals(MD5Util.getMD5(upact))){
-            return "http://localhost:8080/Vivo_war_exploded/registerinfo/register.action";
+            return urls.register();
         }else{
             return "0";
         }

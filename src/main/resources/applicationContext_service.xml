@@ -17,6 +17,8 @@
     </bean>
     <bean id="md5Util" class="utils.MD5Util"/>
 
+    <bean id="urls" class="utils.Urls"/>
+
     <bean id="redis" class="utils.Redis"/>
 
     <bean id="times" class="utils.Times"/>

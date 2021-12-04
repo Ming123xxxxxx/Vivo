@@ -28,69 +28,80 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
     <script type="text/javascript">
-       var p=<%=session.getAttribute("veri")%>
-       if(p!=null){
+
         $(window).unload(function () {
             $.ajax({
-                url:`${pageContext.request.contextPath}/exitac/ea`,
-            })
+                url:`${pageContext.request.contextPath}/homepage/getonoff`,
+                success:function (p) {
+                    if(p==1){
+                    $.ajax({
+                        url:`${pageContext.request.contextPath}/exitac/ea`,
+                    })
+                }
+           }
         })
-       }
+       })
 
        window.onload=function () {
-           var p=<%=session.getAttribute("veri")%>
-           if(p!=null){
-               $("#s1").hide();
-               $("#s2").hide();
-               $("#s3").show();
-               $("#s4").show();
-               $("#s5").show();
-               $("#s6").hide();
+           $.ajax({
+               url:`${pageContext.request.contextPath}/homepage/getonoff`,
+               success:function (p) {
+                   console.log("p===="+p)
+                   if(p==1){
+                       $("#s1").hide();
+                       $("#s2").hide();
+                       $("#s3").show();
+                       $("#s4").show();
+                       $("#s5").show();
+                       $("#s6").hide();
 
-               $.ajax({
-                   url:`${pageContext.request.contextPath}/homepage/attendance`,
-                   success:function (data) {
                        $.ajax({
-                           url:`${pageContext.request.contextPath}/homepage/currenttime`,
+                           url:`${pageContext.request.contextPath}/homepage/attendance`,
                            success:function (data) {
-                               $(".calendar_frame .top_bars span:nth-child(2)").html(data[0]+" / "+data[1]+" / "+data[2])
+                               $.ajax({
+                                   url:`${pageContext.request.contextPath}/homepage/currenttime`,
+                                   success:function (data) {
+                                       $(".calendar_frame .top_bars span:nth-child(2)").html(data[0]+" / "+data[1]+" / "+data[2])
+                                   }
+                               })
+                               var p=data.length;
+                               var l=0;
+                               var q=0;
+                               for(var i=1;i<=p;i++){
+
+                                   if(data[i-1]==-2){
+                                       $(".calendar_frame .ool").append("<span class='day'></span>")
+                                       l++
+                                   }else{
+                                       q=i-l
+                                       $(".calendar_frame .ool").append("<span class='day'>"+q+"</span>")
+                                       $(".calendar_frame .ool span:nth-child("+i+")").addClass("l")
+                                   }
+                                   if(i/7==0){
+                                       $(".calendar_frame .ool").append("<br>")
+                                   }
+                                   if(data[i-1]==-1){
+                                       $(".calendar_frame .ool span:nth-child("+i+")").addClass("s")
+                                   }else if(data[i-1]==0){
+                                       $(".calendar_frame .ool span:nth-child("+i+")").addClass("p")
+                                   }else if(data[i-1]==1){
+                                       $(".calendar_frame .ool span:nth-child("+i+")").addClass("w")
+                                   }
+                               }
                            }
                        })
-                       var p=data.length;
-                       var l=0;
-                       var q=0;
-                       for(var i=1;i<=p;i++){
 
-                           if(data[i-1]==-2){
-                               $(".calendar_frame .ool").append("<span class='day'></span>")
-                               l++
-                           }else{
-                               q=i-l
-                               $(".calendar_frame .ool").append("<span class='day'>"+q+"</span>")
-                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("l")
-                           }
-                           if(i/7==0){
-                               $(".calendar_frame .ool").append("<br>")
-                           }
-                           if(data[i-1]==-1){
-                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("s")
-                           }else if(data[i-1]==0){
-                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("p")
-                           }else if(data[i-1]==1){
-                               $(".calendar_frame .ool span:nth-child("+i+")").addClass("w")
-                           }
-                       }
+                   }else{
+                       $("#s3").hide();
+                       $("#s4").hide();
+                       $("#s5").hide();
+                       $("#s1").show();
+                       $("#s2").show();
+                       $("#s6").show();
                    }
-               })
+               }
+           })
 
-           }else{
-               $("#s3").hide();
-               $("#s4").hide();
-               $("#s5").hide();
-               $("#s1").show();
-               $("#s2").show();
-               $("#s6").show();
-           }
            $(".calendar_frame").hide();
 
        }
@@ -239,8 +250,8 @@
            $("#s4").click(function () {
                    $.ajax({
                        url:`${pageContext.request.contextPath}/exitac/ea`,
-                       success:function(){
-                           window.location.href="http://localhost:8080/Vivo_war_exploded/"
+                       success:function(data){
+                           window.location.href=data
                        }
                    })
            })

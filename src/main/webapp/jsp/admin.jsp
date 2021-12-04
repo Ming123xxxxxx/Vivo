@@ -23,7 +23,7 @@
                 url:`${pageContext.request.contextPath}/admin/on`,
                 success:function (data) {
                     if(data==0) {
-                        window.location.href = "http://localhost:8080/Vivo_war_exploded/admin/jump";
+                        window.location.href =data;
                     }
                 }
             })
@@ -71,9 +71,9 @@
                         <td>${register.onoff}</td>
 
                         <td>
-                            <a href="${pageContext.request.contextPath}/exitac/ea?id=${book.bookID}" style="text-decoration: none;color: yellowgreen">强制下线  </a>
+                            <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${register.account}" style="text-decoration: none;color: yellowgreen">强制下线  </a>
                             |
-                            <a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" style="text-decoration: none;color: red">  删除</a>
+                            <a href="${pageContext.request.contextPath}/admin/delus?account=${register.account}" style="text-decoration: none;color: red">  删除</a>
                         </td>
                     </tr>
                 </c:forEach>

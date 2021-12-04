@@ -13,16 +13,34 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript">
 
+        $(window).unload(function () {
+            $.ajax({
+                url:`${pageContext.request.contextPath}/homepage/getonoff`,
+                success:function (p) {
+                    if(p==1){
+                        $.ajax({
+                            url:`${pageContext.request.contextPath}/exitac/ea`,
+                        })
+                    }
+                }
+            })
+        })
+
         window.onload=function(){
-            var i=<%=session.getAttribute("veri")%>
-            if(i!=null&&"fail"!=i)  {
-                $("#reorup").text("修改信息")
-                $("#sus").val("修改")
-                $("#act").hide()
-                $("#s2").hide()
-            }else{
-                $("#reorup").text("用户注册")
-            }
+
+            $.ajax({
+                url:`${pageContext.request.contextPath}/homepage/getonoff`,
+                success:function (i) {
+                    if (i ==1) {
+                        $("#reorup").text("修改信息")
+                        $("#sus").val("修改")
+                        $("#act").hide()
+                        $("#s2").hide()
+                    } else {
+                        $("#reorup").text("用户注册")
+                    }
+                }
+            })
         }
             $(function () {
                 $("#sus").click(
@@ -51,10 +69,12 @@
                                     $("#s3").text(data[2].text).css("color",data[2].color,"font-size","10px"),
                                     $("#s4").text(data[3].text).css("color",data[3].color,"font-size","10px")
 
-                                    var p=<%=session.getAttribute("veri")%>
+                                    $.ajax({
+                                    url:`${pageContext.request.contextPath}/homepage/getonoff`,
+                                    success:function (p) {
 
                                     for(var i=0;i<4;i++){
-                                        if(i==1&&p!=null){
+                                        if(i==1&&p==1){
                                             continue;
                                         }
                                         if(data[i].color=="#ea8585"){
@@ -62,7 +82,7 @@
                                         }
                                     }
 
-                                    if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4)&&p==null) {
+                                    if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4)&&p!=1) {
                                         alert("注册成功")
                                         $.ajax({
                                             url:"${pageContext.request.contextPath}/registerinfo/adduser",
@@ -78,7 +98,7 @@
                                             }
                                         })
 
-                                    }else if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4&&p!=null)){
+                                    }else if(($("input[type='checkbox']").attr('checked')=="checked"&&i==4&&p==1)){
                                         $.ajax({
                                             url:"${pageContext.request.contextPath}/registerinfo/adduser",
                                             data:{
@@ -97,16 +117,18 @@
                                             }
                                         })
 
-                                    } else if((($("input[type='checkbox']").attr('checked')!="checked"||i<4)&&p!=null)){
+                                    } else if((($("input[type='checkbox']").attr('checked')!="checked"||i<4)&&p==1)){
                                         alert("修改失败")
                                     }else{
                                         alert("注册失败")
                                     }
-
+                                    }
+                                    })
                             },
                             error:function () {
                                 console.log("error")
                             }
+
                         })
                     }
                 )

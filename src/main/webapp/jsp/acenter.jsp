@@ -13,15 +13,18 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript">
 
-        var p=<%=session.getAttribute("veri")%>
-            console.log("p==="+p)
-        if(p!=null){
-            $(window).unload(function () {
-                $.ajax({
-                    url:`${pageContext.request.contextPath}/exitac/ea`,
-                })
+        $(window).unload(function () {
+            $.ajax({
+                url:`${pageContext.request.contextPath}/homepage/getonoff`,
+                success:function (p) {
+                    if(p==1){
+                        $.ajax({
+                            url:`${pageContext.request.contextPath}/exitac/ea`,
+                        })
+                    }
+                }
             })
-        }
+        })
 
         $(function () {
              window.onload=function(){
@@ -44,14 +47,20 @@
              }
 
                 $("#img1").click(function () {
-                      window.location.href="http://localhost:8080/Vivo_war_exploded/";
+                    $.ajax({
+                        url:`${pageContext.request.contextPath}/homepage/toindex`,
+                        success:function (data) {
+                            window.location.href=data;
+                        }
+                    })
+
                   })
 
                 $("#exit").click(function () {
                     $.ajax({
                         url:`${pageContext.request.contextPath}/exitac/ea`,
-                     success:function(){
-                      window.location.href="http://localhost:8080/Vivo_war_exploded/"
+                     success:function(data){
+                        window.location.href=data
                         }
                     })
                 })
@@ -107,7 +116,12 @@
                      })
                 })
                $("#butt").click(function () {
-                   window.location.href="http://localhost:8080/Vivo_war_exploded/atcenter/pinformation.action"
+                   $.ajax({
+                       url:`${pageContext.request.contextPath}/homepage/toacenter`,
+                       success:function (data) {
+                           window.location.href=data;
+                       }
+                   })
                })
         })
     </script>

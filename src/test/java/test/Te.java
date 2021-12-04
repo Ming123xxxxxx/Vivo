@@ -144,6 +144,17 @@ public class Te {
     }
 
     @Test
+    public void delkey(){
+        Jedis jedis = new Jedis("192.168.118.135", 6379);
+        int p=0;
+        try{
+            jedis.del("59131131321"+" ");
+        }finally {
+            jedis.close();
+        }
+
+    }
+    @Test
     public void gett(){
         Calendar cal=Calendar.getInstance(); //调用Calendar 中的方法；
         cal.set(Calendar.DAY_OF_MONTH, 1); // 把时间调整为当月的第一天；
@@ -172,9 +183,9 @@ public class Te {
          System.out.println("日: " + now.get(Calendar.DAY_OF_MONTH));
      }
 
-     @Test
-    public void xx(int p){
-         System.out.println("p="+p);
-     }
+//     @Test
+//    public void xx(int p){
+//         System.out.println("p="+p);
+//     }
 
 }

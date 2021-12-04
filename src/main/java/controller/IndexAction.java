@@ -10,6 +10,7 @@ import pojo.Register;
 import service.AdminService;
 import utils.Redis;
 import utils.Times;
+import utils.Urls;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -36,6 +37,9 @@ public class IndexAction {
     Times times;
 
     @Autowired
+    Urls urls;
+
+    @Autowired
     Redis redis;
 
     @RequestMapping("index")
@@ -51,11 +55,17 @@ public class IndexAction {
     @ResponseBody
     @RequestMapping("dact")
     public String dact(HttpSession session){
-        if(null==session.getAttribute("veri")||"fail".equals(session.getAttribute("veri"))){
-            return "http://localhost:8080/Vivo_war_exploded/";
+        if(null==(String)session.getAttribute("veri")){
+            return urls.index();
         }else{
             return "0";
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("toindex")
+    public String toindex(){
+            return urls.index();
     }
 
     @ResponseBody
@@ -140,6 +150,21 @@ public class IndexAction {
         session.setAttribute("years",times.gety());
         session.setAttribute("months",times.getm());
         session.setAttribute("days",times.getd());
+    }
+
+    @ResponseBody
+    @RequestMapping("getonoff")
+    public String getonoff(HttpSession session){
+
+      if(session.getAttribute("veri")==null){
+          return null;
+      }
+
+      if(adminService.pikeupinformation((String)session.getAttribute("veri")).getOnoff()==1){
+          return "1";
+      }else{
+          return null;
+      }
     }
 
 }

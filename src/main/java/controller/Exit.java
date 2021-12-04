@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.AdminService;
 import utils.Redis;
+import utils.Urls;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,19 +27,16 @@ public class Exit {
     @Autowired
     Redis redis;
 
+    @Autowired
+    Urls urls;
+
     @ResponseBody
     @RequestMapping("ea")
-    public void ea(HttpSession session){
+    public String ea(HttpSession session){
         adminService.onoffs(2,(String)session.getAttribute("veri"));
         redis.setOffL((String)session.getAttribute("veri"));
         session.setAttribute("veri",null);
+        return urls.index();
     }
 
-    @ResponseBody
-    @RequestMapping("forcuoff")
-    public void ea(String accoungt){
-        adminService.onoffs(2,accoungt);
-        redis.setOffL(accoungt);
-//        session.setAttribute("veri",null);
-    }
 }
