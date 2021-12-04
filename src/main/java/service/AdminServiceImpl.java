@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pojo.*;
 
+import java.util.List;
+
 /**
  * @author 温黎明
  * @version 1.0
@@ -60,5 +62,16 @@ public class AdminServiceImpl  implements AdminService {
     public int offtime(String lastlogintime, String account) {
         return adminMapper.offtime(lastlogintime, account);
     }
+
+    @Override
+    public int onoffs(int onoff, String account) {
+        return adminMapper.onoffs(onoff,account);
+    }
+
+    @Override
+    public List onandoff(int onoff, int startIndex, int pageSize) {
+        return adminMapper.onandoff(onoff,startIndex,pageSize);
+    }
+
 
 }

@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/acenter.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript">
+
+        var p=<%=session.getAttribute("veri")%>
+            console.log("p==="+p)
+        if(p!=null){
+            $(window).unload(function () {
+                $.ajax({
+                    url:`${pageContext.request.contextPath}/exitac/ea`,
+                })
+            })
+        }
+
         $(function () {
              window.onload=function(){
                 $.ajax({

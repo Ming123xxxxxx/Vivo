@@ -5,26 +5,83 @@
   Time: 18:44
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    <script type="text/javascript">
+        setTimeout("fmPost()",10000)
+        function fmPost(){
+            location.reload(true);
+        }
+        window.onload=function () {
+            $.ajax({
+                url:`${pageContext.request.contextPath}/admin/on`,
+                success:function (data) {
+                    if(data==0) {
+                        window.location.href = "http://localhost:8080/Vivo_war_exploded/admin/jump";
+                    }
+                }
+            })
+        }
+    </script>
 </head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script type="text/javascript">
-    window.onload=function () {
-        $.ajax({
-            url:`${pageContext.request.contextPath}/admin/on`,
-            success:function (data) {
-                   if(data==0) {
-                       window.location.href = "http://localhost:8080/Vivo_war_exploded/admin/jump";
-                   }
-            }
-        })
-    }
-</script>
 
 <body>
-dawdawd
+
+<div class="container">
+
+    <div class="row clearfix">
+        <div class="col-md-10 column">
+            <div class="page-header">
+                <h1>
+                    <small>用户列表—— 显示所有用户状况</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-16 column">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>账号</th>
+                    <th>注册时间</th>
+                    <th>修改账号时间</th>
+                    <th>最后登录时间</th>
+                    <th>在线状况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="register" items="${list}">
+                    <tr>
+                        <td>${register.id}</td>
+                        <td>${register.username}</td>
+                        <td>${register.account}</td>
+                        <td>${register.regdate}</td>
+                        <td>${register.modifytime}</td>
+                        <td>${register.lastlogintime}</td>
+                        <td>${register.onoff}</td>
+
+                        <td>
+                            <a href="${pageContext.request.contextPath}/exitac/ea?id=${book.bookID}" style="text-decoration: none;color: yellowgreen">强制下线  </a>
+                            |
+                            <a href="${pageContext.request.contextPath}/book/deleteBook?id=${book.bookID}" style="text-decoration: none;color: red">  删除</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

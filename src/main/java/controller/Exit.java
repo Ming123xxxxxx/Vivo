@@ -29,7 +29,16 @@ public class Exit {
     @ResponseBody
     @RequestMapping("ea")
     public void ea(HttpSession session){
+        adminService.onoffs(2,(String)session.getAttribute("veri"));
         redis.setOffL((String)session.getAttribute("veri"));
         session.setAttribute("veri",null);
+    }
+
+    @ResponseBody
+    @RequestMapping("forcuoff")
+    public void ea(String accoungt){
+        adminService.onoffs(2,accoungt);
+        redis.setOffL(accoungt);
+//        session.setAttribute("veri",null);
     }
 }

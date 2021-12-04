@@ -52,7 +52,7 @@ public class RegisterInfo {
     public String adduser(String username, String account, String pwd, HttpSession session) {
 
         if(session.getAttribute("veri")==null&&"succ".equals(session.getAttribute("tf"))){
-            Register register = new Register(username,account,md5Util.getMD5(pwd),times.getymd(),null,null);
+            Register register = new Register(0,username,account,md5Util.getMD5(pwd),times.getymd(),null,null,0);
             adminService.adduser(register);
             session.setAttribute("tf",null);
             return "http://localhost:8080/Vivo_war_exploded/";

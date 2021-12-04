@@ -28,6 +28,14 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
     <script type="text/javascript">
+       var p=<%=session.getAttribute("veri")%>
+       if(p!=null){
+        $(window).unload(function () {
+            $.ajax({
+                url:`${pageContext.request.contextPath}/exitac/ea`,
+            })
+        })
+       }
 
        window.onload=function () {
            var p=<%=session.getAttribute("veri")%>
@@ -249,6 +257,7 @@
                console.log("ppppp")
            })
        })
+
 
     </script>
 

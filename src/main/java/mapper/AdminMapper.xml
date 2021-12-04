@@ -3,8 +3,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.AdminMapper">
 
+    <select id="onandoff" parameterType="_int" resultType="Register">
+        select id,username,account,regdate,modifytime,lastlogintime,onoff from userinfo
+        <where>
+            <if test="onoff!=0">
+                onoff=#{onoff}
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+
     <insert id="adduser" parameterType="Register">
-        insert into userinfo values (0,#{username},#{account},#{pwd},#{regdate},#{modifytime},#{lastlogintime})
+        insert into userinfo values (0,#{username},#{account},#{pwd},#{regdate},#{modifytime},#{lastlogintime},#{onoff})
     </insert>
 
     <select id="queryone" parameterType="string" resultType="_int">
@@ -33,6 +43,10 @@
 
     <update id="offtime" parameterType="string">
         update userinfo set lastlogintime=#{lastlogintime} where account=#{account}
+    </update>
+
+    <update id="onoffs" parameterType="map">
+        update userinfo set onoff=#{onoff} where account=#{account}
     </update>
 
 </mapper>

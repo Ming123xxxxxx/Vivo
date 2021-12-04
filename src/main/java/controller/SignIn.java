@@ -53,6 +53,7 @@ public class SignIn {
         String noco="002";
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
             if(adminService.queryaccount(account,md5Util.getMD5(pwd))==1){
+                adminService.onoffs(1,account);
                 redis.setOnL(account);
                 list.add(suc);
                 list.add(s);

@@ -13,10 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Register {
+    private int id;
     private String username;
     private String account;
     private String pwd;
     private String regdate;
     private String modifytime;
     private String lastlogintime;
+    private int onoff;
 }

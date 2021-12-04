@@ -172,4 +172,9 @@ public class Te {
          System.out.println("日: " + now.get(Calendar.DAY_OF_MONTH));
      }
 
+     @Test
+    public void xx(int p){
+         System.out.println("p="+p);
+     }
+
 }

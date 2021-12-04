@@ -46,15 +46,24 @@ public class Redis {
     //在线则给account添加对应的value，并在登录的时候给key设置过期时间
     public void setOnL(String account){
         try{
-            jedis.zadd("User_Online_Status",1,account);
-            if(Integer.parseInt(String.valueOf(jedis.ttl("User_Online_Status")))==-1){
-                //设置"User_Online_Status"的过期时间
-                jedis.expire("User_Online_Status",times.getTime());
-            }
             //获取当前时间和注册时间间隔的天数
             String regdate = adminService.pikeupinformation(account).getRegdate();
             String getymd = times.getymd();
             int p=times.getTimeIntervel(regdate,getymd);
+
+            //设置当前在线的用户
+//            jedis.setbit("currentdays",adminService.pikeupinformation(account).getId(),"1");
+            jedis.zadd("User_Online_Status",1,account);
+
+            //获取当前日期的访问人数
+            if( jedis.exists(times.gety()+":"+times.getm()+":"+times.getd())){
+                if(!jedis.getbit(account,p)){
+                    jedis.incr(times.gety()+":"+times.getm()+":"+times.getd());
+                }
+            }else{
+                jedis.set(times.gety()+":"+times.getm()+":"+times.getd(),"1");
+            }
+
             //给每个用户添加一个list,第一个参数为用户账户,第二个参数为（当前时间-注册时间-1）,第三个参数为当天是否在线
             jedis.setbit(account,p,"1");
         } catch (ParseException e) {
@@ -72,18 +81,6 @@ public class Redis {
         }finally {
             jedis.close();
         }
-    }
-
-    //返回总共在线人数
-    //若出问题则返回-1
-    public int OUser(){
-        int user_online=-1;
-        try{
-            user_online = Integer.parseInt(String.valueOf(jedis.zcount("User_Online_Status", 1, 1)));
-        }finally {
-            jedis.close();
-        }
-        return user_online;
     }
 
     //获取用户次月的签到情况
@@ -145,8 +142,30 @@ public class Redis {
         return list;
     }
 
+    //返回当前在线人数
+    //若出问题则返回-1
+    public int OUser(){
+        int user_online=-1;
+        try{
+            user_online = Integer.parseInt(String.valueOf(jedis.zcount("User_Online_Status", 1, 1)));
+        }finally {
+            jedis.close();
+        }
+        return user_online;
+    }
 
-    //返回当天在线人数
+    //返回某个日期在线人数
+    //若不存在返回-1
+    public int OnSize(int years,int months,int days){
+        if(jedis.exists( jedis.get(years + ":" + months + ":" + days))){
+            int s =Integer.parseInt( jedis.get(years + ":" + months + ":" + days));
+            return s;
+        }else{
+            return -1;
+        }
+    }
+
+    //返回当天访问人数
     //若出问题则返回-1
     public int currentperson(){
         int user_online=-1;

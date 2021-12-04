@@ -3,6 +3,8 @@ package mapper;
 import org.apache.ibatis.annotations.Param;
 import pojo.Register;
 
+import java.util.List;
+
 /**
  * @author 温黎明
  * @version 1.0
@@ -24,4 +26,8 @@ public interface AdminMapper {
     int updateuser(@Param("username") String username, @Param("pwd") String pwd,@Param("modifytime") String modifytime,@Param("act") String act);
 
     int offtime(@Param("lastlogintime") String lastlogintime,@Param("account") String account);
+
+    int onoffs(@Param("onoff") int onoff ,@Param("account") String account);
+
+    List<Register> onandoff(@Param("onoff") int onoff,@Param("startIndex") int startIndex,@Param("pageSize") int pageSize);
 }
