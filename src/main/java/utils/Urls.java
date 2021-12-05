@@ -25,4 +25,7 @@ public class Urls {
         return uls+ "/admin/jump";
     }
 
+    public String toadmin(){
+        return uls+"/admin/toad";
+    }
 }

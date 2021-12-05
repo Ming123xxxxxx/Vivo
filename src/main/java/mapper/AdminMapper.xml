@@ -6,7 +6,10 @@
     <select id="onandoff" parameterType="_int" resultType="Register">
         select id,username,account,regdate,modifytime,lastlogintime,onoff from userinfo
         <where>
-            <if test="onoff!=0">
+            <if test="onoff==1">
+                onoff=#{onoff}
+            </if>
+            <if test="onoff==2">
                 onoff=#{onoff}
             </if>
         </where>

@@ -46,6 +46,17 @@ public class Admins {
     @Autowired
     Redis redis;
 
+    @RequestMapping("/toad")
+    public String toad(HttpSession session,Model model){
+        if((int)session.getAttribute("admin")==1) {
+            List<Register> list = adminService.onandoff((int) session.getAttribute("onandoff"), (int) session.getAttribute("startindex"), (int) session.getAttribute("pagesize"));
+            model.addAttribute("list", list);
+            return "admin";
+        }else{
+            return "varifaction";
+        }
+    }
+
     @RequestMapping("/jump")
     public String jump(){
         return "varifaction";
@@ -56,15 +67,18 @@ public class Admins {
         if(adminInfoService.pikeupinformation(account,pwd)==1){
             adminInfoService.offtime(times.getymdhms(),account);
             session.setAttribute("admin",1);
-//            List list = new ArrayList();
-//            Map map = new HashMap();
-//            map.put("User_Online_Status",redis.OUser());
-//            map.put("User_All_Status",redis.currentperson());
-//            list.add(map);
-            List<Register> list = adminService.onandoff(0, 0, 10);
-//            for(Register reg:onandoff){
-//                list.add(reg);
-//            }
+
+            if (session.getAttribute("onandoff")==null){
+                session.setAttribute("onandoff",0);
+            }
+            if (session.getAttribute("startindex")==null){
+                session.setAttribute("startindex",0);
+            }
+            if (session.getAttribute("pagesize")==null){
+                session.setAttribute("pagesize",10);
+            }
+        List<Register> list = adminService.onandoff((int)session.getAttribute("onandoff"), (int)session.getAttribute("startindex"), (int)session.getAttribute("pagesize"));
+
             model.addAttribute("list",list);
             return "admin";
         }else {
@@ -77,7 +91,7 @@ public class Admins {
     public String td(HttpSession session,Model model){
         session.setAttribute("admin",1);
 
-        List<Register> list = adminService.onandoff(0, 0, 10);
+        List<Register> list = adminService.onandoff((int)session.getAttribute("onandoff"),(int)session.getAttribute("startindex"),(int)session.getAttribute("pagesize"));
 
         model.addAttribute("list",list);
         return "admin";
@@ -86,13 +100,50 @@ public class Admins {
     @ResponseBody
     @RequestMapping("on")
     public String on(HttpSession session,Model model){
+
+        if (session.getAttribute("onandoff")==null){
+            session.setAttribute("onandoff",0);
+        }
+        if (session.getAttribute("startindex")==null){
+            session.setAttribute("startindex",0);
+        }
+        if (session.getAttribute("pagesize")==null){
+            session.setAttribute("pagesize",10);
+        }
+
         if((int)session.getAttribute("admin")==1){
-            List<Register> list = adminService.onandoff(0, 0, 10);
+            List<Register> list = adminService.onandoff((int)session.getAttribute("onandoff"), (int)session.getAttribute("startindex"), (int)session.getAttribute("pagesize"));
             model.addAttribute("list",list);
             return urls.admin();
         }else{
             return "0";
         }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("updatedata")
+    public String updatedata(HttpSession session,String onandoff,String startindex,String pagesize){
+
+        if (onandoff==null){
+            session.setAttribute("onandoff",0);
+        }else{
+            session.setAttribute("onandoff",Integer.parseInt(onandoff.toString()));
+        }
+
+        if (startindex==null){
+            session.setAttribute("startindex",0);
+        }else{
+            session.setAttribute("startindex",Integer.parseInt(startindex.toString()));
+        }
+
+        if (pagesize==null){
+            session.setAttribute("pagesize",10);
+        }else{
+            session.setAttribute("pagesize",Integer.parseInt(pagesize.toString()));
+        }
+        return urls.toadmin();
+
     }
 
     @ResponseBody

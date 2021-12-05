@@ -46,7 +46,6 @@
            $.ajax({
                url:`${pageContext.request.contextPath}/homepage/getonoff`,
                success:function (p) {
-                   console.log("p===="+p)
                    if(p==1){
                        $("#s1").hide();
                        $("#s2").hide();

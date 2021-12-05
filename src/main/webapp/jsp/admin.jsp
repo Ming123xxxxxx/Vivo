@@ -16,8 +16,9 @@
     <script type="text/javascript">
         setTimeout("fmPost()",10000)
         function fmPost(){
-            location.reload(true);
+          location.reload()
         }
+
         window.onload=function () {
             $.ajax({
                 url:`${pageContext.request.contextPath}/admin/on`,
@@ -28,6 +29,23 @@
                 }
             })
         }
+
+            function x() {
+                var p=$("#onandof option:selected").val()
+                console.log("p="+p)
+                $.ajax({
+                    url:`${pageContext.request.contextPath}/admin/updatedata`,
+                    data:{
+                        "onandoff":p,
+                    },
+                    success:function (data) {
+                        window.location.href =data;
+                    }
+                })
+            }
+
+
+
     </script>
 </head>
 
@@ -57,6 +75,14 @@
                     <th>修改账号时间</th>
                     <th>最后登录时间</th>
                     <th>在线状况</th>
+                    <th>
+                        <select id="onandof" onchange="x()">
+                            <option  value="0"></option>
+                            <option  value="0">所有用户</option>
+                            <option  value="1">在线用户</option>
+                            <option  value="2">离线用户</option>
+                        </select>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>

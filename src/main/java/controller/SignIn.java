@@ -57,7 +57,6 @@ public class SignIn {
         String noco="002";
         if(session.getAttribute(KAPTCHA_SESSION_KEY).equals(code)){
             if(adminService.queryaccount(account,md5Util.getMD5(pwd))==1){
-                adminService.onoffs(1,account);
                 redis.setOnL(account);
                 list.add(suc);
                 list.add(s);
@@ -66,8 +65,8 @@ public class SignIn {
                 session.setAttribute("years",times.gety());
                 session.setAttribute("months",times.getm());
                 session.setAttribute("days",times.getd());
-
                 adminService.offtime(times.getymdhms(),account);
+                adminService.onoffs(1,account);
                 return list;
             }else{
                 list.add(def);
