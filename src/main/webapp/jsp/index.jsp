@@ -319,12 +319,6 @@
 
       </div>
 
-      <script type="text/javascript">
-
-
-
-      </script>
-
       <div class="calendar_frame" style="background: url(${pageContext.request.contextPath}/img/attendence.jpg) no-repeat;background-size:100% 100%">
           <div class="top_bars">
               <span>上个月</span>
@@ -355,5 +349,362 @@
 
       </div>
 
+      <!-- 搜索层 -->
+      <div class="search template">
+          <img src="${pageContext.request.contextPath}/img/cat.gif"/>
+          <input type="text" placeholder="&nbsp;&nbsp;&nbsp;搜索 天猫 商品/品牌/店铺">
+          <button>搜索</button>
+      </div>
+
+      <!-- 物品分类 -->
+      <div class="classification template">
+          <div class="moudule"><span class="icom"></span>商品分类</div>
+          <img src="${pageContext.request.contextPath}/img/supermarket2.png" style="margin-left: 3px;"/>
+          <img src="${pageContext.request.contextPath}/img/international.png"  style="left: 330px;"/>
+          <span class="often">
+      <span><a href="#">天猫会员</a></span>
+      <span><a href="#">电器城</a></span>
+      <span><a href="#">喵鲜生</a></span>
+      <span><a href="#">医药馆</a></span>
+      <span><a href="#">魅力惠</a></span>
+      <span><a href="#">飞猪旅行</a></span>
+      <span><a href="#">苏宁易购</a></span>
+    </span>
+      </div>
+
+      <div class="hr"></div>
+      <!-- 轮播图 -->
+      <div class="carousel">
+          <div class="image template">
+      <span class="list">
+      <ul>
+        <a href="#">
+          <li>女装/内衣</li>
+        </a>
+        <a href="#"><li>男装/运动户外</li></a>
+        <a href="#"><li>女鞋/男鞋/箱包</li></a>
+        <a href="#"><li>美妆/个人护理</li></a>
+        <a href="#"><li>腕表/眼睛/珠宝饰品</li></a>
+        <a href="#"><li>手机/数码/电脑办公</li></a>
+        <a href="#"><li>母婴玩具</li></a>
+        <a href="#"><li>零食/茶酒/进口食品</li></a>
+        <a href="#"><li>生鲜水果</li></a>
+        <a href="#"><li>大家电/生活电器</li></a>
+        <a href="#"><li>家具建材</li></a>
+        <a href="#"><li>汽车/配件/用品</li></a>
+        <a href="#"><li>家纺/家纺/鲜花</li></a>
+        <a href="#"><li>医药保健</li></a>
+        <a href="#"><li>厨具/收纳/宠物</li></a>
+        <a href="#"> <li>图书音像</li></a>
+      </ul>
+    </span>
+              <span class="side">
+      <span  class="lef">
+     <ul>
+       <li style="margin-top: 20px;">当季流行 ></li>
+       <li>精选上装 ></li>
+       <li>浪漫裙装 ></li>
+       <li>女士下装 ></li>
+       <li>特色女装 ></li>
+       <li>文胸塑身 ></li>
+       <li>家居服 ></li>
+       <li>内裤背心 ></li>
+     </ul>
+    </span>
+    <span class="rig">
+     <ul>
+      <li>女装新品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商场同款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仙女连衣裙&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T恤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;衬衫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时髦外套&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;休闲裤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牛仔裤</br>
+          </br>
+          无痕文胸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运动文胸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;潮流家居服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;百搭船袜</li>
+      <li style="margin-top: 13px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毛呢外套&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;羽绒服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;棉服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;丝绒卫衣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;毛针织衫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;皮毛一体&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;皮草毛衣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        衬衫卫衣&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </br>
+          </br>
+          针织衫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T恤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;短外套&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小西装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;风衣</li>
+      <li> </li>
+      <li> </li>
+      <li> </li>
+      <li> </li>
+      <li> </li>
+      <li> </li>
+     </ul>
+    </span>
+    </span>
+              <ul class="images">
+                  <ol>
+                      <li class="one"></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                  </ol>
+                  <span>
+    <li><img src="${pageContext.request.contextPath}/img/bautique.jpg" style="z-index: 2;display: block;"/></li>
+    <li><img src="${pageContext.request.contextPath}/img/skycat.png" /></li>
+    <li><img src="${pageContext.request.contextPath}/img/honest.jpg" /></li>
+    <li><img src="${pageContext.request.contextPath}/img/newgoods.jpg" /></li>
+    <li><img src="${pageContext.request.contextPath}/img/party.jpg"  /></li>
+    <li><img src="${pageContext.request.contextPath}/img/snacks.jpg" /></li>
+    <li><img src="${pageContext.request.contextPath}/img/Christmas.jpg" /></li>
+              </ul>
+              </span>
+              <!-- <img src="E:\天猫\image\party.jpg" > -->
+          </div>
+      </div>
+
+      <!-- 侧边条 -->
+      <div class="sidebar">
+          <span style="background-color: #ff0036;line-height: 36px">导航</span>
+          <ul>
+              <li>天猫<br>超市</li>
+              <li>天猫<br>国际</li>
+              <li>美丽<br>人生</li>
+              <li>酷电<br>潮玩</li>
+              <li>居家<br>生活</li>
+              <li>打造<br>爱巢</li>
+              <li>户外<br>出行</li>
+              <li>猜你<br>喜欢</li>
+          </ul>
+          <span style="background-color: #ababab;margin-top: 1px;">返回<br>顶部</span>
+      </div>
+
+      <!-- 合作品牌 -->
+      <div class="cooperation">
+          <ul class="one">
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+          </ul>
+          <ul class="two">
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+          </ul>
+          <ul class="three">
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+              <li>
+                  <img src="${pageContext.request.contextPath}/img/litte.png" />
+                  <div>优惠券￥40
+                      <span>点击进入</span>
+                  </div>
+              </li>
+          </ul>
+      </div>
+
+      <!-- 侧边条分类 -->
+      <div class="sidecalssfication">
+          <ul>
+              <li><span style="top: -37px;"><img src="${pageContext.request.contextPath}/img/catsupermarket.png" /></span></li>
+              <li><span style="top: 514px;"><img src="${pageContext.request.contextPath}/img/supermarket.png" /></span></li>
+              <li><span style="top: 1064px;" class="verline">美丽人生&nbsp;&nbsp; &nbsp;FASHION & BEAUTY</span></li>
+              <li><span style="top: 1615px;" class="verline">酷电潮玩&nbsp;&nbsp; &nbsp;ELECTRONICS</span></li>
+              <li><span style="top: 2165px;" class="verline">居家生活&nbsp;&nbsp; &nbsp;GROCERY & HEALTH</span></li>
+              <li><span style="top: 2715px;" class="verline">打造爱巢&nbsp;&nbsp; &nbsp;HOME</span></li>
+              <li><span style="top: 3264px;" class="verline">户外出行&nbsp;&nbsp; &nbsp;OUTDOORS & AUTOMOTIVE</span></li>
+              <li><span style="top: 3814px;left: 43%;">--<i class="icom"></i>   猜你喜欢--</span></li>
+          </ul>
+      </div>
+      <!-- 尾部介绍 -->
+      <div class="introduce">
+  <span class="guarantee ">
+    <ul>
+      <a><li>
+      <p>品质保障</p>
+      品质护航，购物无忧
+      </li>
+    </a>
+      <a><li>
+       <p>七天无理由退货</p>
+      为你提供售后无忧保障
+      </li>
+    </a>
+      <a><li>
+        <p>特色服务体验</p>
+        为你呈现不一样的服务
+      </li>
+    </a>
+      <a><li>
+       <p>帮助中心</p>
+       你的购物指南
+     </li>
+    </a>
+    </ul>
+  </span>
+          <span>
+
+   </span>
+      </div>
+      <div class="bottombar">
+
+      </div>
 </body>
 </html>
