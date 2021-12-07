@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Register;
@@ -99,7 +100,7 @@ public class Admins {
 
     @ResponseBody
     @RequestMapping("on")
-    public String on(HttpSession session,Model model){
+    public String on(HttpSession session, Model model){
 
         if (session.getAttribute("onandoff")==null){
             session.setAttribute("onandoff",0);
@@ -114,12 +115,13 @@ public class Admins {
         if((int)session.getAttribute("admin")==1){
             List<Register> list = adminService.onandoff((int)session.getAttribute("onandoff"), (int)session.getAttribute("startindex"), (int)session.getAttribute("pagesize"));
             model.addAttribute("list",list);
+            session.setAttribute("cusssday",redis.currentperson());
+            session.setAttribute("cussspeop",redis.OUser());
             return urls.admin();
         }else{
             return "0";
         }
     }
-
 
     @ResponseBody
     @RequestMapping("updatedata")

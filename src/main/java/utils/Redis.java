@@ -35,7 +35,10 @@ public class Redis {
         int p=0;
         try{
             p = Integer.parseInt(String.valueOf(jedis.zrem("User_Online_Status",account)));
-            jedis.del(account);
+            if(p==0){
+                return p;
+            }
+            p = Integer.parseInt( String.valueOf(jedis.del(account)));
         }finally {
             jedis.close();
         }
@@ -43,7 +46,7 @@ public class Redis {
     }
 
     //设置用户在线
-    //在线则给account添加对应的value，并在登录的时候给key设置过期时间
+    //在线则给account添加对应的value
     public void setOnL(String account){
         try{
             //获取当前时间和注册时间间隔的天数
@@ -51,10 +54,15 @@ public class Redis {
             String getymd = times.getymd();
             int p=times.getTimeIntervel(regdate,getymd);
 
-            //设置当前在线的用户
-//            jedis.setbit("currentdays",adminService.pikeupinformation(account).getId(),"1");
             jedis.zadd("User_Online_Status",1,account);
+            if(Integer.parseInt(String.valueOf(jedis.ttl("User_Online_Status")))==-1){
+                //设置"User_Online_Status"的过期时间
+                jedis.expire("User_Online_Status",times.getTime());
+            }
 
+            jedis.zadd("Onpepo",1,account);
+
+            System.out.println("过期时间:"+jedis.ttl("User_Online_Status"));
             //获取当前日期的访问人数
             if( jedis.exists(times.gety()+":"+times.getm()+":"+times.getd())){
                 if(!jedis.getbit(account,p)){
@@ -77,7 +85,7 @@ public class Redis {
     //离线则给对应的value-1=0
     public void setOffL(String account){
         try{
-            jedis.zincrby("User_Online_Status",-1,account);
+            jedis.zincrby("Onpepo",-1,account);
         }finally {
             jedis.close();
         }
@@ -147,7 +155,7 @@ public class Redis {
     public int OUser(){
         int user_online=-1;
         try{
-            user_online = Integer.parseInt(String.valueOf(jedis.zcount("User_Online_Status", 1, 1)));
+            user_online = Integer.parseInt(String.valueOf(jedis.zcount("Onpepo", 1, 1)));
         }finally {
             jedis.close();
         }

@@ -68,11 +68,17 @@ public class AcccountCenter {
     @RequestMapping("deluser")
     public String deluser(HttpSession session,String upact){
         String account=(String)session.getAttribute("veri");
+        System.out.println(account);
          if(adminService.getpwd(account).equals(MD5Util.getMD5(upact))){
-            redis.delkey((String)session.getAttribute("veri"));
-            adminService.userdel(account);
-            session.setAttribute("veri",null);
-            return urls.index();
+             int delkey = redis.delkey(account);
+             System.out.println("delkey="+delkey);
+             if(delkey==1) {
+                 adminService.userdel(account);
+                 session.setAttribute("veri", null);
+                 return urls.index();
+             }else {
+                 return "0";
+             }
          }else{
             return "0";
          }

@@ -22,17 +22,11 @@
         window.onload=function () {
             $.ajax({
                 url:`${pageContext.request.contextPath}/admin/on`,
-                success:function (data) {
-                    if(data==0) {
-                        window.location.href =data;
-                    }
-                }
             })
         }
 
             function x() {
                 var p=$("#onandof option:selected").val()
-                console.log("p="+p)
                 $.ajax({
                     url:`${pageContext.request.contextPath}/admin/updatedata`,
                     data:{
@@ -59,6 +53,8 @@
                 <h1>
                     <small>用户列表—— 显示所有用户状况</small>
                 </h1>
+                <h4>当天访问人数:<c:out value="${cusssday}"/></h4>
+                <h4>当前在线人数:<c:out value="${cussspeop}"/></h4>
             </div>
         </div>
     </div>
