@@ -44,8 +44,13 @@ body{
     line-height:40px ;
 }
 .informa ul li .icom{
+    text-decoration: none;
     font-family:'icomoon';
-}
+    color: black;
+    margin-left: 10px;
+}.informa ul li .icom:hover{
+    color: #e67689;
+ }
 .informa ul .tils{
     color: black;
 }

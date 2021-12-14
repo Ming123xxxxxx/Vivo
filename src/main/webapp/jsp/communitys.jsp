@@ -50,7 +50,7 @@
 
        <div class="top_bar">
            <a href="${pageContext.request.contextPath}/homepage/index">   <span style="background-color: #09a8e7;">主页</span>    </a>
-           <a href="${pageContext.request.contextPath}/log/on">    <span style="background-color:green;">账户</span>  </a>
+           <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    <span style="background-color:green;">账户</span>  </a>
        </div>
 
        <div class="options">
@@ -88,10 +88,10 @@
                    <li>${ArticlesPojo.author}</li>
                    <li>${ArticlesPojo.times}</li>
                    <li>
-                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" style="text-decoration: none;color: yellowgreen" class="icom"></a>
-                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" style="text-decoration: none;color: yellowgreen" class="icom"></a>
-                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" style="text-decoration: none;color: red" class="icom"> </a>
-                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" style="text-decoration: none;color: red" class="icom"> </a>
+                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom"></a>
+                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom"></a>
+                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" class="icom"> </a>
+                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" class="icom"> </a>
                    </li>
                </ul>
            </c:forEach>

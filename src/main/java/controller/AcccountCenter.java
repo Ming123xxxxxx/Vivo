@@ -35,8 +35,13 @@ public class AcccountCenter {
     Urls urls;
 
     @RequestMapping("pinformation")
-    public String info(){
-        return "acenter";
+    public String info(HttpSession session){
+        if(session.getAttribute("veri")!=null&&adminService.pikeupinformation((String)session.getAttribute("veri")).getOnoff()==1){
+            return "acenter";
+        }else{
+            return "redirect:/log/on";
+        }
+
     }
 
     @ResponseBody
