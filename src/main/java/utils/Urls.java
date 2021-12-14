@@ -7,7 +7,7 @@ package utils;
  */
 public class Urls {
 
-    private String uls="http://192.168.1.156:8080/Vivo_war_exploded";
+    private String uls="http://192.168.1.186:8080/Vivo_war_exploded";
 
     public String index(){
         return uls;
@@ -28,4 +28,9 @@ public class Urls {
     public String toadmin(){
         return uls+"/admin/toad";
     }
+
+    public String toartices(){
+        return uls+"/artice/into";
+    }
+
 }

@@ -4,6 +4,9 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import utils.MD5Util;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,6 +56,25 @@ public class Te {
         System.out.println(po);
     }
 
+    @Test
+    public void ssss(){
+        Jedis jedis = new Jedis("192.168.118.135",6379);
+        //获取指定key中value的score
+        Double zscore = jedis.zscore("pppp", "libai");
+        System.out.println("score="+zscore);
+        System.out.println("---------------------");
+        //获取指定keu中的value(按score从大到小查询)
+        Set<String> user_online_status = jedis.zrevrange("pppp", 0, -1);
+        for (String s:user_online_status){
+            System.out.println(s);
+        }
+        System.out.println("---------------------");
+        //获取指定keu中的value(按score从小到大查询)
+        Set<String> user_online = jedis.zrange("pppp", 0, -1);
+        for (String s:user_online){
+            System.out.println(s);
+        }
+    }
 
     @Test
     public void getlist(){
@@ -187,5 +209,31 @@ public class Te {
 //    public void xx(int p){
 //         System.out.println("p="+p);
 //     }
+
+    @Test
+    public void readtext(){
+        File file =null;
+        FileWriter fileWriter = null;
+        try {
+            String str="texts//";
+            String st=String.valueOf(UUID.randomUUID());
+            String afters=".txt";
+            String sp=str+st+afters;
+            file = new File(sp.replaceAll("-",""));
+            fileWriter = new FileWriter(file);
+            fileWriter.write("hello world");
+            System.out.println(String.valueOf((file.getAbsoluteFile())));
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            if(fileWriter!=null){
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 }

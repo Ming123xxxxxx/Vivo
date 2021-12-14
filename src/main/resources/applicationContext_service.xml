@@ -12,9 +12,15 @@
     <bean id="AdminServiceImpl" class="service.AdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
     </bean>
+
     <bean id="AdminInfoServiceImpl" class="service.AdminInfoServiceImpl">
         <property name="adminInfoMapper" ref="adminInfoMapper"/>
     </bean>
+
+    <bean id="ArticlesServiceImpl" class="service.ArticlesServiceImpl">
+        <property name="articlesMapper" ref="articlesMapper"/>
+    </bean>
+
     <bean id="md5Util" class="utils.MD5Util"/>
 
     <bean id="urls" class="utils.Urls"/>
@@ -22,6 +28,11 @@
     <bean id="redis" class="utils.Redis"/>
 
     <bean id="times" class="utils.Times"/>
+
+    <bean id="redisArtices" class="utils.RedisArtices"/>
+
+    <bean id="operationText" class="utils.OperationText"/>
+
     <!--设置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>

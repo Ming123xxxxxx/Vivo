@@ -33,10 +33,14 @@ public class Exit {
     @ResponseBody
     @RequestMapping("ea")
     public String ea(HttpSession session){
-        adminService.onoffs(2,(String)session.getAttribute("veri"));
-        redis.setOffL((String)session.getAttribute("veri"));
-        session.setAttribute("veri",null);
-        return urls.index();
+        if(session.getAttribute("veri")!=null&&adminService.pikeupinformation((String)session.getAttribute("veri")).getOnoff()==1) {
+            adminService.onoffs(2, (String) session.getAttribute("veri"));
+            redis.setOffL((String) session.getAttribute("veri"));
+            session.setAttribute("veri", null);
+            return urls.index();
+        }else{
+            return "2";
+        }
     }
 
 }

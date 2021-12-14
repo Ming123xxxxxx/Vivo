@@ -13,19 +13,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript">
 
-        $(window).unload(function () {
-            $.ajax({
-                url:`${pageContext.request.contextPath}/homepage/getonoff`,
-                success:function (p) {
-                    if(p==1){
-                        $.ajax({
-                            url:`${pageContext.request.contextPath}/exitac/ea`,
-                        })
-                    }
-                }
-            })
-        })
-
         $(function () {
              window.onload=function(){
                 $.ajax({
@@ -60,7 +47,9 @@
                     $.ajax({
                         url:`${pageContext.request.contextPath}/exitac/ea`,
                      success:function(data){
-                        window.location.href=data
+                            if(data!=2) {
+                                window.location.href = data
+                            }
                         }
                     })
                 })

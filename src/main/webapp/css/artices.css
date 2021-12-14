@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body{
+    background-color: #a3a3a3;
+}
+div{
+
+}
+.arct{
+    width: 1200px;
+    height: 750px;
+}
+.uporwrite{
+    height: 30px;
+    width: 1200px;
+    margin-left: 400px;
+    font-size: 20px;
+}
+.uporwrite span{
+    display: inline-block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    background-color: #e67689;
+}
+.uporwrite span:nth-child(1){
+    background-color: white;
+}
+
+

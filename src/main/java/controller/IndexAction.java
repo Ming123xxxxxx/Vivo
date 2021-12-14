@@ -159,7 +159,6 @@ public class IndexAction {
       if(session.getAttribute("veri")==null){
           return null;
       }
-
       if(adminService.pikeupinformation((String)session.getAttribute("veri")).getOnoff()==1){
           return "1";
       }else{

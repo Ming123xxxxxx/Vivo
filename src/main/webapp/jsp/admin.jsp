@@ -13,6 +13,39 @@
     <!-- 引入 Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+
+    <style type="text/css">
+
+        *{
+            margin: 0;
+            margin: auto;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body{
+            background-color: #a3a3a3;
+        }
+
+        .uporwrite{
+            height: 30px;
+            width: 1200px;
+            margin-left: 21%;
+            font-size: 20px;
+        }
+        .uporwrite span{
+            display: inline-block;
+            width: 50%;
+            float: left;
+            text-align: center;
+            line-height: 30px;
+            background-color: #e67689;
+        }
+        .uporwrite span:nth-child(1){
+            background-color: white;
+        }
+    </style>
     <script type="text/javascript">
         setTimeout("fmPost()",10000)
         function fmPost(){
@@ -23,6 +56,7 @@
             $.ajax({
                 url:`${pageContext.request.contextPath}/admin/on`,
             })
+            $(".texts").hide();
         }
 
             function x() {
@@ -38,12 +72,30 @@
                 })
             }
 
+        $(function () {
+            $(".uporwrite #s1").click(function () {
+                $(".texts").hide();
+                $(".container").show();
+                $("#s1").css("background-color","white");
+                $("#s2").css("background-color","#e67689")
+            })
 
-
+            $(".uporwrite #s2").click(function () {
+                $(".texts").show();
+                $(".container").hide();
+                $("#s2").css("background-color","white");
+                $("#s1").css("background-color","#e67689")
+            })
+        })
     </script>
 </head>
 
 <body>
+
+<div class="uporwrite">
+    <span id="s1">管理用户</span>
+    <span id="s2">管理文本</span>
+</div>
 
 <div class="container">
 

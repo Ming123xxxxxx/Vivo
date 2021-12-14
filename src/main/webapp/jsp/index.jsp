@@ -11,13 +11,13 @@
 <head>
     <title>Vivo首页</title>
     <style>
-        @font-face{
+        @font-face {
             font-family: 'icomoon';
-            src:url('${pageContext.request.contextPath}/fonts/icomoon.eot?87xwgt');
-            src:url('${pageContext.request.contextPath}/fonts/icomoon.eot?87xwgt#iefix') format('embedded-opentype'),
-            url('${pageContext.request.contextPath}/icomoon.ttf?87xwgt') format('truetype'),
-            url('${pageContext.request.contextPath}/fonts/icomoon.woff?87xwgt') format('woff'),
-            url('${pageContext.request.contextPath}/fonts/icomoon.svg?87xwgt#icomoon') format('svg');
+            src: url('${pageContext.request.contextPath}/fonts/icomoon.eot?ijeeu0');
+            src: url('${pageContext.request.contextPath}/fonts/icomoon.eot?ijeeu0#iefix') format('embedded-opentype'),
+            url('${pageContext.request.contextPath}/fonts/icomoon.ttf?ijeeu0') format('truetype'),
+            url('${pageContext.request.contextPath}/fonts/icomoon.woff?ijeeu0') format('woff'),
+            url('${pageContext.request.contextPath}/fonts/icomoon.svg?ijeeu0#icomoon') format('svg');
             font-weight: normal;
             font-style: normal;
             font-display: block;
@@ -28,19 +28,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
     <script type="text/javascript">
-
-        $(window).unload(function () {
-            $.ajax({
-                url:`${pageContext.request.contextPath}/homepage/getonoff`,
-                success:function (p) {
-                    if(p==1){
-                    $.ajax({
-                        url:`${pageContext.request.contextPath}/exitac/ea`,
-                    })
-                }
-           }
-        })
-       })
 
        window.onload=function () {
            $.ajax({
@@ -250,7 +237,9 @@
                    $.ajax({
                        url:`${pageContext.request.contextPath}/exitac/ea`,
                        success:function(data){
-                           window.location.href=data
+                           if(data!=2) {
+                               window.location.href = data
+                           }
                        }
                    })
            })
@@ -280,7 +269,7 @@
               <a href="javascript:;"><li>OriginOS</li></a>
               <a href="javascript:;"><li>体验店</li></a>
               <a href="javascript:;"><li>企业业务</li></a>
-              <a href="javascript:;"><li>社区</li></a>
+              <a href="javascript:;"><li><a href="${pageContext.request.contextPath}/community/into">社区</a></li></a>
           </span>
 
           <span class="top_bar_right">
@@ -289,12 +278,12 @@
 
               <!--注册/登录-->
           <div class="register_sign">
-              <span id="s6" class="icom">  <a href="${pageContext.request.contextPath}/admin/jump">    管理员登录</a></span>
-              <span id="s1" class="icom">  <a href="${pageContext.request.contextPath}/log/on">    登录</a></span>
+              <span id="s6" class="icom">  <a href="${pageContext.request.contextPath}/admin/jump">    管理员登录</a></span>
+              <span id="s1" class="icom">  <a href="${pageContext.request.contextPath}/log/on">    登录</a></span>
               <span id="s2" class="icom">  <a href="${pageContext.request.contextPath}/registerinfo/register.action">   注册</a></span>
-              <span id="s3" class="icom">  <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    账户中心</a></span>
+              <span id="s3" class="icom">  <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    账户中心</a></span>
               <span id="s5" class="icom"> <a href="javascript:;">    签到</a></span>
-              <span id="s4" class="icom">  <a href="javascript:;">   退出登录</a></span>
+              <span id="s4" class="icom">  <a href="javascript:;">   退出登录</a></span>
           </div>
 
           </span>

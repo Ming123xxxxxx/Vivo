@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ArticlesMapper">
+
+    <insert id="addtext" parameterType="ArticlesPojo">
+        insert into artices values(0,#{name},#{author},#{authoraccount},#{title},#{local},#{times})
+    </insert>
+
+    <select id="getalltext"  parameterType="_int" resultType="ArticlesPojo">
+        select * from artices limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="getBook"  parameterType="string" resultType="ArticlesPojo">
+        select * from artices where name=#{name}
+    </select>
+
+</mapper>
