@@ -1,0 +1,10 @@
+1.熟悉java基础知识，
+2.掌握jsp/Servlet技术
+3.熟练掌握html.css,js,jquery,ajax
+4.熟练掌握spring、springMVC、mybatis三大框架
+5.熟练使用mysql的基本操作
+6.掌握Redis
+7.熟练使用idea，eclipse开发工具
+8.熟练使用maven,git
+9.熟悉linux的常用命令,及服务配置
+10.掌握Shell编程

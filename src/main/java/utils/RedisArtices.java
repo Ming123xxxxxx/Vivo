@@ -37,6 +37,16 @@ public class RedisArtices {
         jedis.zadd("hot",0,textname);
     }
 
+    public List count(String name){
+        List list = new ArrayList();
+        list.add(jedis.zscore("up",name));
+        list.add(jedis.zscore("low",name));
+        list.add(jedis.zscore("download",name));
+        list.add(jedis.zscore("collections",name));
+        list.add(jedis.zscore("hot",name));
+        return list;
+    }
+
     //点赞
     public void up(String textname){
         jedis.zincrby("up",1,textname);

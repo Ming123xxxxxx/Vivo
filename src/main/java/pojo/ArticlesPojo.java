@@ -24,7 +24,7 @@ public class ArticlesPojo {
     private int low;
     private int download;
     private int collection;
-    private int hot;
+    private double hot;
 
     public ArticlesPojo(int id, String name,String author,String authoraccount, String title, String local, String times) {
         this.id = id;

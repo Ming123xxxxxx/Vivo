@@ -54,9 +54,10 @@
        </div>
 
        <div class="options">
-           <span style="margin-left: 600px">标题</span>
-           <span style="margin-left: 330px">作者</span>
-           <span style="margin-left: 180px">发布时间</span>
+           <span style="margin-left: 370px">热度</span>
+           <span style="margin-left: 240px">标题</span>
+           <span style="margin-left: 260px">作者</span>
+           <span style="margin-left: 100px">发布时间</span>
            <span style="margin-left: 200px">操作</span>
            <span style="margin-left: 250px">
                   <select>
@@ -84,14 +85,15 @@
        <div class="informa">
            <c:forEach var="ArticlesPojo" items="${books}">
                <ul>
-                   <li><a  href="javascript:;" class="tils">${ArticlesPojo.title}</a></li>
+                   <li><a href="javascript:;">${ArticlesPojo.hot}</a></li>
+                   <li><a  href="${pageContext.request.contextPath}/community/readtext?name=${ArticlesPojo.name}" class="tils">${ArticlesPojo.title}</a></li>
                    <li>${ArticlesPojo.author}</li>
                    <li>${ArticlesPojo.times}</li>
                    <li>
-                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom"></a>
-                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom"></a>
-                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" class="icom"> </a>
-                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" class="icom"> </a>
+                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom">:${ArticlesPojo.up}</a>
+                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom">:${ArticlesPojo.low}</a>
+                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" class="icom"> :${ArticlesPojo.download}</a>
+                       <a href="${pageContext.request.contextPath}/artice/testDown?name=${ArticlesPojo.name}" class="icom"> :${ArticlesPojo.collection}</a>
                    </li>
                </ul>
            </c:forEach>

@@ -59,16 +59,22 @@ body{
 }
 .informa ul{
     margin-top: 10px;
-    display: inline;
+    display: inline-block;
     list-style: none;
     height: 40px;
 }
-.informa ul li{
+.informa ul li {
     float: left;
-    width: 250px;
+    width: 150px;
 }
 .informa ul li:nth-child(1){
+    width: 100px;
+}
+.informa ul li:nth-child(2){
     width: 450px;
+}
+.informa ul li:nth-child(5){
+    width: 350px;
 }
 .options span  select{
     width: 100px;
