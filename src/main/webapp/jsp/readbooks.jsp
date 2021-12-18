@@ -40,7 +40,7 @@
     返回社区
 </a>
 <div>
-    <p>${text}</p>
+    <textarea default readonly style="width: 1200px; height: 1000px;margin: auto;text-align: center;font-size: 15px" disabled>${text}</textarea>
 </div>
 
 </body>

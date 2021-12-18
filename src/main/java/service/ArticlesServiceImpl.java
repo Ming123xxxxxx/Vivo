@@ -35,5 +35,15 @@ public class ArticlesServiceImpl implements  ArticlesService{
         return articlesMapper.getBook(name);
     }
 
+    @Override
+    public List<ArticlesPojo> getpersonalbooks(String account) {
+        return articlesMapper.getpersonalbooks(account);
+    }
+
+    @Override
+    public int deletebook(String name) {
+        return articlesMapper.deletebook(name);
+    }
+
 
 }

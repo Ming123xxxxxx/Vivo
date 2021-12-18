@@ -91,7 +91,7 @@
         <form action="${pageContext.request.contextPath}/artice/upload" method="post" enctype="multipart/form-data">
             <input name="titls" type="text" placeholder="请输入标题" maxlength="20" style="height: 40px;width: 1200px;margin-top: 15px">
             <br>
-            <input type="file"  name="files" style="margin-left: 500px;margin-top: 20px;margin-bottom: 15px" id="fi"><br>
+            <input type="file"  name="files" style="margin-left: 500px;margin-top: 20px;margin-bottom: 15px" id="fi">(字符集为UTF-8)<br>
             <input type="submit" style="width: 1200px;height: 40px" id="subss">
         </form>
     </div>

@@ -14,4 +14,6 @@ public interface ArticlesMapper {
     int addtext(ArticlesPojo articlesPojo);
     List<ArticlesPojo> getalltext();
     ArticlesPojo getBook(@Param("name") String name);
+    List<ArticlesPojo> getpersonalbooks(@Param("authoraccount") String account);
+    int deletebook(@Param("name")String name);
 }

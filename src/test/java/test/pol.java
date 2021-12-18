@@ -5,9 +5,7 @@ package test;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author 温黎明
@@ -67,6 +65,17 @@ public class pol {
             w = 0;
 
         System.out.println( weekDays[w]);
+
+    }
+
+
+    @Test
+    public void ssss(){
+        List list = new ArrayList();
+        list.add(0,"10");
+        list.add(1,"20");
+        list.set(0,"30");
+        System.out.println(list.toString());
 
     }
 }

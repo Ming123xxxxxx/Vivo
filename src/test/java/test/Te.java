@@ -95,6 +95,38 @@ public class Te {
     }
 
     @Test
+    public void te(){
+        Jedis jedis = new Jedis("192.168.118.135",6379);
+       try {
+//           switch (jedis.zscore("up","21").intValue()){
+////            case null:
+////
+////                break;
+//               case 1:
+//                   System.out.println(1);
+//                   break;
+//               case 2:
+//                   System.out.println(1);
+//                   break;
+//               case 8:
+//                   System.out.println(1);
+//                   break;
+//               case 9:
+//                   System.out.println(1);
+//                   break;
+//               case 10:
+//                   System.out.println(1);
+//                   break;
+//           }
+           System.out.println(jedis.zscore("up","21"));
+       }catch (NullPointerException e){
+           System.out.println("colo");
+       }finally {
+           jedis.close();
+       }
+    }
+
+    @Test
     public void getTime(){
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_YEAR, 1);
@@ -106,6 +138,13 @@ public class Te {
         System.out.println(Integer.parseInt(String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000)));
     }
 
+
+    @Test
+    public void tis(){
+        Jedis jedis = new Jedis("192.168.118.135",6379);
+        System.out.println(jedis.zscore("up","sadw")==null);
+        jedis.close();
+    }
 
     @Test
     public void ti(){
@@ -236,4 +275,10 @@ public class Te {
         }
     }
 
+    @Test
+    public void ssssss(){
+        String p="qwer";
+        System.out.println(p.contains("qwe"));
+        System.out.println(p.contains("qwer"));
+    }
 }

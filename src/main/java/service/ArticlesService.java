@@ -1,5 +1,6 @@
 package service;
 
+import org.apache.ibatis.annotations.Param;
 import pojo.ArticlesPojo;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface ArticlesService {
     int addtext(ArticlesPojo articlesPojo);
     List<ArticlesPojo> getalltext();
     ArticlesPojo getBook(String name);
+    List<ArticlesPojo> getpersonalbooks(String account);
+    int deletebook(String name);
 }

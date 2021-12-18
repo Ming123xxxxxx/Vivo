@@ -1,0 +1,139 @@
+计算机系统由硬件（hardware）和软件（software）两部分构成。
+
+硬件：运算器、控制器、存储器（RAM）、输入设备、输出设备
+软件：系统软件和应用软件
+
+操作系统（Operating System）：直接覆盖在硬件上的软件，
+提供人机交互的接口（界面）。
+    ~ Windows （Server、Advanced Server、Data Center）
+    ~ Macintosh ---> macOS
+    ~ Unix ---> AIX / Hp-Ux / Solaris
+    ~ Linux
+
+1946 ENIAC ---> 5000
+1960s ----> IBM ----> OS/360
+1965 GE / MIT / Bell ----> Multics ----> 1969
+
+ken ----> Space Travel ----> PDP-7 ----> Unics ----> B
+dmr ----> C ----> Unix
+
+Unix ---> BSD ---> FreeBSD ---> Macintosh ---> macOS ---> iOS
+Unix ---> Minix ---> Linux ---> Android
+
+Linux发行版本：
+    ~ Redhat
+    ~ CentOS（*）
+    ~ Ubuntu
+    ~ SUSE
+    ~ Debian
+    ~ Fedora
+
+虚拟机
+    ~ Parallel Desktop
+    ~ VirtualBox
+    ~ VMware
+
+云服务器
+    ~ 性价比非常高
+    ~ 运维管理非常简单
+    ~ 伸缩性灵活性俱佳
+
+连接云服务器需要使用SSH协议（安全的远程连接）---> TCP / 22
+
+SSH客户端工具：
+    ~ Termius
+    ~ FinalShell / XShell / Putty
+
+Shell ---> Bash（Bourne Again SHell）---> 壳程序
+
+Linux命令：命令 [参数1 参数2 ...] [命令作用的对象]
+    ~ who / w - 查看谁登录了系统
+        -q：统计登录人数
+    ~ clear - 清除屏幕上的输出
+    ~ cal - 查看日历
+        -3：显示前后3个月的日历
+    ~ date - 查看时间日期
+    ~ whatis - 查看命令的描述
+    ~ whereis - 获取命令的路径
+    ~ shutdown - 关机或重启
+    ~ logout / exit - 退出登录
+    ~ ps - 查看进程信息
+    ~ history - 查看历史命令
+        - !!：把刚才的命令再执行一遍
+        - !历史命令编号：重新执行历史命令
+        -c：清除历史命令
+    ~ write - 给其他登录系统的用户发消息
+        write wangdachui
+    ~ wall - 给所有人发消息
+
+常用快捷键：
+    ~ Tab：命令补全和路径补全
+    ~ Ctrl+c：终止一个命令的执行
+    ~ Ctrl+w：删除一个单词
+    ~ Ctrl+u：删除整行
+    ~ Ctrl+a：光标回到行首
+    ~ Ctrl+e：光标去到行尾
+    ~ Ctrl+d：结束输入
+    ~ Ctrl+z：把一个正在运行的命令暂停放到后台
+
+文件管理
+    ~ pwd - print working directory：显示当前的工作目录
+        - 以root身份登录：/root
+        - 以wangdachui身份登录：/home/wangdachui
+    ~ cd - change directory：切换工作目录
+        绝对路径：/
+        相对路径：以当前路径为基础
+            ~ .  ---> 当前目录
+            ~ .. ---> 上级目录
+        - /root：超级管理员的用户主目录
+        - /home：普通用户的用户主目录
+        - /etc：配置文件
+        - /usr：可执行的命令以及用户安装的程序
+        - /var：程序运行中产生的数据和日志
+        - /proc：进程文件
+            ~ cpuinfo / meminfo
+    ~ ls - list directory contents
+        -a - all - 显示所有
+        -l - long - 长格式查看
+            ~ -：文件
+            ~ d：文件夹
+            ~ l：软链接（符号连接，相当于Windows系统的快捷方式）
+    ~ cat - concatenate - 连接多个文件（查看文件内容）
+        -n - number - 显示行号
+    ~ mkdir - make directory - 创建文件夹
+    ~ rmdir - remove empty directory - 删除空文件夹
+    ~ touch - 创建空文件或者修改文件的最后访问时间
+    ~ rm - remove - 删除文件或文件夹
+        -i - interactive - 交互式删除
+        -f - force - 强制删除
+        -r - recursive - 递归式删除
+    ~ 查看文件：cat / tac / head / tail / more / less / od / rev
+    ~ cp - copy - 复制（拷贝）文件
+        -r - recursive - 递归式拷贝
+    ~ mv - move - 移动文件
+        - 在相同的路径下移动文件相当于是重命名操作
+    ~ file - 查看文件的性质
+    ~ wc - word count - 统计文件的字符数、单词数、行数
+        -l - line：行数
+        -w - word：单词数（中文文件不准确）
+        -c - character：字符数（中文文件不准确）
+    ~ uniq - unique - 去重
+        -c - count：统计重复的次数
+    ~ sort - 排序
+        -r - reverise：反转
+        -n - number：按数值大小排序
+    ~ iconv - 编码转换
+        -f - from：原始编码
+        -t - target：目标编码
+
+gb2312 - 国标码（常用汉字、平假名、片假名）
+gbk - 国标码扩展码
+gb18030 - 收录了汉字、少数民族文字
+
+Unicode - 万国码 - 字符集
+    ~ utf-8
+        a - 一个字节
+        骆 - 三个字节
+         - 四个字节（Emoji字符）
+    ~ utf-16
+    ~ utf-32

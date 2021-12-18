@@ -14,5 +14,13 @@
     <select id="getBook"  parameterType="string" resultType="ArticlesPojo">
         select * from artices where name=#{name}
     </select>
+    
+    <select id="getpersonalbooks" parameterType="string" resultType="ArticlesPojo">
+        select * from artices where authoraccount=#{authoraccount}
+    </select>
+    
+    <delete id="deletebook"  parameterType="string">
+        delete from artices where name=#{name}
+    </delete>
 
 </mapper>

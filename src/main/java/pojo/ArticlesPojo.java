@@ -25,6 +25,9 @@ public class ArticlesPojo {
     private int download;
     private int collection;
     private double hot;
+    private String upcolor;
+    private String lowcolor;
+    private String collectioncolor;
 
     public ArticlesPojo(int id, String name,String author,String authoraccount, String title, String local, String times) {
         this.id = id;

@@ -31,6 +31,9 @@
         function x() {
             var p=$("#personals option:selected").val()
             if(p==1){
+               window.location.reload();
+            }
+            if(p==2){
                 $.ajax({
                     url:`${pageContext.request.contextPath}/artice/select`,
                     data:{
@@ -43,7 +46,106 @@
                     }
                 })
             }
+
+            if(p==3){
+                $(".informa .publishes").empty()
+                $(".informa .publishes").show()
+                $(".informa .allbookss").hide()
+                $(".informa .collectionss").hide()
+                $.ajax({
+                    url:`${pageContext.request.contextPath}/community/publishbook`,
+                    success:function (data) {
+                        var i=0;
+                        for (i;i<data.length;i++) {
+                            $(".informa .publishes").append(
+                                "<ul>"
+                                   +
+                                    "<li><a href=javascript:;>"+data[i].hot+"</a></li>"+
+                                    "<li><a href=${pageContext.request.contextPath}/community/readtext?name="+data[i].name+">"+data[i].title+"</a>"+"</li>"+
+                                    "<li>"+data[i].author+"</li>"+
+                                    "<li>"+data[i].times+"</li>"+
+                                    "<li>"+
+                                          "<a href=${pageContext.request.contextPath}/community/readtext?name="+data[i].name+">"+"修改"+"</a>"+"   |   "+
+                                          "<a href=${pageContext.request.contextPath}/community/deletebooks?textname="+data[i].name+">"+"删除"+"</a>"+"   |   "+"<select style='width:120px;height:25px'>"+
+                                           "<option>"+"点赞数:"+data[i].up+"</option>"+
+                                           "<option>"+"点踩数:"+data[i].low+"</option>"+
+                                           "<option>"+"收藏数:"+data[i].collection+"</option>"+
+                                           "<option>"+"下载数:"+data[i].download+"</option>"
+                                           +"</select>"
+                                          +
+                                    "</li>"
+
+                                +"</li>"+
+                                "</ul>"
+                            )
+                        }
+                    }
+                })
+            }
+
+            if(p==4){
+                $(".informa .collectionss").empty()
+                $(".informa .collectionss").show()
+                $(".informa .publishes").hide()
+                $(".informa .allbookss").hide()
+                $.ajax({
+                    url:`${pageContext.request.contextPath}/community/collectionbooks`,
+                    success:function (data) {
+                        var i=0;
+                        for (i;i<data.length;i++) {
+                            $(".informa .collectionss").append(
+                                "<ul>"
+                                +
+                                "<li><a href=javascript:;>"+data[i].hot+"</a></li>"+
+                                "<li><a href=${pageContext.request.contextPath}/community/readtext?name="+data[i].name+">"+data[i].title+"</a>"+"</li>"+
+                                "<li>"+data[i].author+"</li>"+
+                                "<li>"+data[i].times+"</li>"+
+                                "<li>"+
+                                "<a href=${pageContext.request.contextPath}/community/cancelcollection?textname="+data[i].name+">"+"取消收藏"+"</a>"+"   |   "+
+                                 "<select style='width:120px;height:25px'>"+
+                                "<option>"+"点赞数:"+data[i].up+"</option>"+
+                                "<option>"+"点踩数:"+data[i].low+"</option>"+
+                                "<option>"+"收藏数:"+data[i].collection+"</option>"+
+                                "<option>"+"下载数:"+data[i].download+"</option>"
+                                +"</select>"
+                                +
+                                "</li>"
+
+                                +"</li>"+
+                                "</ul>"
+                            )
+                        }
+                    }
+                })
+
         }
+        }
+
+        $(function () {
+            $(".icom").click(function () {
+                $(this).css(
+                    "color","#e67689"
+                )
+            })
+
+            $(".icom:nth-child(1)").click(function () {
+                $(this).css(
+                    "color","#e67689"
+                )
+                $(".icom:nth-child(2)").css(
+                    "color","black"
+                )
+            })
+
+            $(".icom:nth-child(2)").click(function () {
+                $(this).css(
+                    "color","#e67689"
+                )
+                $(".icom:nth-child(1)").css(
+                    "color","black"
+                )
+            })
+        })
     </script>
 </head>
 <body>
@@ -73,30 +175,39 @@
            <span style="margin-left: 50px">
                <select id="personals" onchange="x()">
                     <option >干些什么</option>
-                    <option value="1">发布文章</option>
-                    <option value="2">查看已发文章</option>
-                    <option value="3">修改文章</option>
-                    <option value="4">删除文章</option>
-                    <option value="5">查看收藏的文章</option>
+                    <option value="1">查看文章</option>
+                    <option value="2">发布文章</option>
+                    <option value="3">查看已发文章</option>
+                    <option value="4">查看收藏的文章</option>
                </select>
            </span>
        </div>
 
        <div class="informa">
-           <c:forEach var="ArticlesPojo" items="${books}">
-               <ul>
-                   <li><a href="javascript:;">${ArticlesPojo.hot}</a></li>
-                   <li><a  href="${pageContext.request.contextPath}/community/readtext?name=${ArticlesPojo.name}" class="tils">${ArticlesPojo.title}</a></li>
-                   <li>${ArticlesPojo.author}</li>
-                   <li>${ArticlesPojo.times}</li>
-                   <li>
-                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom">:${ArticlesPojo.up}</a>
-                       <a href="${pageContext.request.contextPath}/admin/forcuoff?account=${ArticlesPojo.name}" class="icom">:${ArticlesPojo.low}</a>
-                       <a href="${pageContext.request.contextPath}/admin/delus?account=${ArticlesPojo.name}" class="icom"> :${ArticlesPojo.download}</a>
-                       <a href="${pageContext.request.contextPath}/artice/testDown?name=${ArticlesPojo.name}" class="icom"> :${ArticlesPojo.collection}</a>
-                   </li>
-               </ul>
-           </c:forEach>
+          <div class="allbookss">
+              <c:forEach var="ArticlesPojo" items="${books}">
+                  <ul>
+                      <li><a href="javascript:;">${ArticlesPojo.hot}</a></li>
+                      <li><a  href="${pageContext.request.contextPath}/community/readtext?name=${ArticlesPojo.name}" class="tils">${ArticlesPojo.title}</a></li>
+                      <li>${ArticlesPojo.author}</li>
+                      <li>${ArticlesPojo.times}</li>
+                      <li>
+                          <a  style="color: ${ArticlesPojo.upcolor}" href="${pageContext.request.contextPath}/community/operations?name=${ArticlesPojo.name}&type=up" class="icom" style="color: ${ArticlesPojo.upcolor}">:${ArticlesPojo.up}</a>
+                          <a  style="color: ${ArticlesPojo.lowcolor}" href="${pageContext.request.contextPath}/community/operations?name=${ArticlesPojo.name}&type=low" class="icom">:${ArticlesPojo.low}</a>
+                          <a  style="color: ${ArticlesPojo.collectioncolor}" href="${pageContext.request.contextPath}/community/operations?name=${ArticlesPojo.name}&type=collections" class="icom"> :${ArticlesPojo.collection}</a>
+                          <a  href="${pageContext.request.contextPath}/artice/testDown?name=${ArticlesPojo.name}" class="icom"> :${ArticlesPojo.download}</a>
+                      </li>
+                  </ul>
+              </c:forEach>
+          </div>
+           
+          <div class="publishes" style="display: none">
+
+          </div> 
+           
+           <div class="collectionss" style="display:none;">
+
+           </div>
        </div>
 
 

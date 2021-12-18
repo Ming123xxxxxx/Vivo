@@ -73,7 +73,7 @@ public class Article {
     @RequestMapping("select")
     @ResponseBody
     public String select(String vl){
-        if(Integer.parseInt(vl)==1){
+        if(Integer.parseInt(vl)==2){
             return urls.toartices();
         }else {
             return "0";
@@ -136,8 +136,10 @@ public class Article {
     }
 
     @RequestMapping("/testDown")
-    public ResponseEntity<byte[]> tetsresponseentity(String name) throws IOException{
+    public ResponseEntity<byte[]> tetsresponseentity(String name,HttpSession session) throws IOException{
 
+        //下载量+1
+        redisArtices.download(name);
         String str="D:\\IntelliJ IDEA 2020.1\\Vivo\\texts\\";
         String downloadtext=str+name+".txt";
         //创建输入流
@@ -160,6 +162,7 @@ public class Article {
         //关闭输入流
         is.close();
         return responseEntity;
+
     }
 
 
