@@ -50,8 +50,8 @@ public class Times {
     //获取当前时间的年月日时分秒，格式如:2021年11月23日 下午5:39:41
     public String getymdhms() {
         Date date = new Date();
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.getDateTimeInstance().format(date);
+        SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return formate.getDateTimeInstance().format(date);
     }
 
     //获取当前时间和注册时间的间隔天数

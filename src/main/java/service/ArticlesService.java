@@ -16,4 +16,7 @@ public interface ArticlesService {
     ArticlesPojo getBook(String name);
     List<ArticlesPojo> getpersonalbooks(String account);
     int deletebook(String name);
+    int getcount();
+    List<ArticlesPojo> getnewbooks(int id);
+    int getlastid();
 }

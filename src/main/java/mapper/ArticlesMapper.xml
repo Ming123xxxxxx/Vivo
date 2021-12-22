@@ -23,4 +23,16 @@
         delete from artices where name=#{name}
     </delete>
 
+    <select id="getcount" resultType="_int">
+        select count(*) from artices
+    </select>
+
+    <select id="getnewbooks"  parameterType="_int" resultType="ArticlesPojo">
+        select * from artices where id>#{id}
+    </select>
+
+    <select id="getlastid" resultType="_int">
+        SELECT id FROM artices ORDER BY id desc LIMIT 1;
+    </select>
+
 </mapper>

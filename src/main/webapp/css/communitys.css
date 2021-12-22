@@ -10,20 +10,21 @@ body{
 }
 .top_bar{
     margin: auto;
-    width: 100%;
+    width: 1200px;
     height: 40px;
 }
 .top_bar span{
     display: inline-block;
-    width: 50%;
+    width: 400px;
     float: left;
     margin: auto;
     text-align: center;
     line-height: 40px;
 }
 .options{
-    width: 100%;
+    width: 1200px;
     height: 40px;
+    margin: auto;
     background-color:#ffae00;
     text-align: center;
     line-height: 40px;
@@ -42,6 +43,23 @@ body{
     color: black;
     text-align: center;
     line-height:40px ;
+    overflow: scroll;
+    overflow-x:hidden;
+}
+
+.informa::-webkit-scrollbar{
+    width: 6px;
+}
+.informa::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.informa::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+
 }
 .informa ul li .icom{
     text-decoration: none;
@@ -65,7 +83,7 @@ body{
 }
 .informa ul li {
     float: left;
-    width: 150px;
+    width: 140px;
 }
 .informa ul li:nth-child(1){
     width: 100px;
@@ -74,7 +92,7 @@ body{
     width: 450px;
 }
 .informa ul li:nth-child(5){
-    width: 350px;
+    width: 280px;
 }
 .options span  select{
     width: 100px;

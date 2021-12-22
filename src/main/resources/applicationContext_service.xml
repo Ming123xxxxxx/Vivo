@@ -21,6 +21,10 @@
         <property name="articlesMapper" ref="articlesMapper"/>
     </bean>
 
+    <bean id="ChatServiceImpl" class="service.ChatServiceImpl">
+        <property name="chatMapper" ref="chatMapper"/>
+    </bean>
+
     <bean id="md5Util" class="utils.MD5Util"/>
 
     <bean id="urls" class="utils.Urls"/>

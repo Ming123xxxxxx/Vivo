@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style: none;
+}
+body{
+    background-color: #a3a3a3;
+}
+a{
+    width: 100%;
+    height: 30px;
+    text-align:center;
+    line-height: 30px;
+    background-color: #4cc4b4;
+    display: inline-block;
+}
+.home{
+    margin: auto;
+}
+.home .chatframe{
+    width: 66%;
+    height: 900px;
+    font-size: 15px;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: white;
+}
+.home .chatframe::-webkit-scrollbar{
+    width: 5px;
+}
+.home .chatframe::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.home .chatframe::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+
+}
+.inputframe{
+    width: 66%;
+}
+.home .textframe{
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+}
+.home .sub{
+    width: 10%;
+    height: 40px;
+}
+.inputframe input{
+    float: left;
+}

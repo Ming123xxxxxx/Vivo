@@ -145,34 +145,55 @@
                     "color","black"
                 )
             })
+
+
         })
+
+        setInterval(function xxss(){
+            $.ajax({
+                url:`${pageContext.request.contextPath}/community/getnewbooks`,
+                success:function (data) {
+                    if(data!=""){
+                        var i=0;
+                        for (i;i<data.length;i++) {
+                            $(".informa .allbookss").append(
+
+                                ' <ul>\n' +
+                                '                      <li style="margin-left: 30px"><a href="javascript:;">'+data[i].hot+'</a></li>\n' +
+                                '                      <li title="'+data[i].title+'"><a  href="${pageContext.request.contextPath}/community/readtext?name='+data[i].name+'" class="tils">'+data[i].title+'</a></li>\n' +
+                                '                      <li>'+data[i].author+'</li>\n' +
+                                '                      <li>'+data[i].times+'</li>\n' +
+                                '                      <li>\n' +
+                                '                          <a  style="color: '+data[i].upcolor+'" href="${pageContext.request.contextPath}/community/operations?name='+data[i].name+'&type=up" class="icom" style="color:'+data[i].upcolor+'">:'+data[i].up+'</a>\n' +
+                                '                          <a  style="color: '+data[i].lowcolor+'" href="${pageContext.request.contextPath}/community/operations?name='+data[i].name+'&type=low" class="icom">:'+data[i].low+'</a>\n' +
+                                '                          <a  style="color:'+data[i].collectioncolor+'" href="${pageContext.request.contextPath}/community/operations?name='+data[i].name+'&type=collections" class="icom"> :'+data[i].collection+'</a>\n' +
+                                '                          <a  href="${pageContext.request.contextPath}/artice/testDown?name='+data[i].name+'" class="icom"> :'+data[i].download+'</a>\n' +
+                                '                      </li>\n' +
+                                '                  </ul>'
+                            )
+                        }
+                    }
+                }
+            })
+        },4000)
+
     </script>
 </head>
 <body>
 
        <div class="top_bar">
            <a href="${pageContext.request.contextPath}/homepage/index">   <span style="background-color: #09a8e7;">主页</span>    </a>
+           <a href="${pageContext.request.contextPath}/chartsroom/into">    <span style="background-color:#db5860;">聊天室</span>  </a>
            <a href="${pageContext.request.contextPath}/atcenter/pinformation.action">    <span style="background-color:green;">账户</span>  </a>
        </div>
 
        <div class="options">
-           <span style="margin-left: 370px">热度</span>
-           <span style="margin-left: 240px">标题</span>
-           <span style="margin-left: 260px">作者</span>
-           <span style="margin-left: 100px">发布时间</span>
-           <span style="margin-left: 200px">操作</span>
-           <span style="margin-left: 250px">
-                  <select>
-                    <option>条件选择</option>
-                    <option>按热度降序</option>
-                    <option>按热度升序</option>
-                    <option>按时间降序</option>
-                    <option>按时间升序</option>
-                    <option>按点赞数降序</option>
-                    <option>按点赞数升序</option>
-                </select>
-            </span>
-           <span style="margin-left: 50px">
+           <span style="margin-left: 75px">热度</span>
+           <span style="margin-left: 230px">标题</span>
+           <span style="margin-left: 270px">作者</span>
+           <span style="margin-left: 90px">发布时间</span>
+           <span style="margin-left: 155px">操作</span>
+           <span style="margin-left: 40px">
                <select id="personals" onchange="x()">
                     <option >干些什么</option>
                     <option value="1">查看文章</option>
@@ -187,8 +208,8 @@
           <div class="allbookss">
               <c:forEach var="ArticlesPojo" items="${books}">
                   <ul>
-                      <li><a href="javascript:;">${ArticlesPojo.hot}</a></li>
-                      <li><a  href="${pageContext.request.contextPath}/community/readtext?name=${ArticlesPojo.name}" class="tils">${ArticlesPojo.title}</a></li>
+                      <li style="margin-left: 30px"><a href="javascript:;">${ArticlesPojo.hot}</a></li>
+                      <li title="${ArticlesPojo.title}"><a  href="${pageContext.request.contextPath}/community/readtext?name=${ArticlesPojo.name}" class="tils">${ArticlesPojo.title}</a></li>
                       <li>${ArticlesPojo.author}</li>
                       <li>${ArticlesPojo.times}</li>
                       <li>

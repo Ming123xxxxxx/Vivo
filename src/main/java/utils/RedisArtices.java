@@ -70,7 +70,7 @@ public class RedisArtices {
             jedis.zadd("account:community",0,account+textname);
         }
             //判断是否点击的是收藏，并且收藏中有无该文件，
-        if(!(incry==4&&jedis.sismember(account+"collections",textname))){
+        if((incry==4&&!jedis.sismember(account+"collections",textname))){
             //增加文本到收藏中
             jedis.sadd(account+"collections",textname);
         }
@@ -118,6 +118,8 @@ public class RedisArtices {
             incry=4;
         }
        int p=getusercommunityinfo(account,textname,incry);
+        System.out.println("incry="+incry);
+        System.out.println("p="+p);
        try {
 
            if(p==0) {

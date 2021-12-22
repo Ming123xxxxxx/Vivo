@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ChatMapper">
+
+    <select id="getallchats" resultType="ChatPojo">
+        select * from chatroom
+    </select>
+
+    <select id="getlastid" resultType="_int">
+        SELECT IFNULL(MAX(id),0) FROM chatroom ORDER BY id desc LIMIT 1;
+    </select>
+
+    <insert id="addrecords" parameterType="string">
+        insert into chatroom values (0,#{criticaccount},#{criticname},#{comment},#{times})
+    </insert>
+
+    <select id="getrecordsbyid" parameterType="_int" resultType="ChatPojo">
+           select * from chatroom where id=#{id}
+    </select>
+</mapper>

@@ -33,4 +33,7 @@ public class Urls {
         return uls+"/artice/into";
     }
 
+    public String tocommunity(){
+        return uls+"/community/into";
+    }
 }

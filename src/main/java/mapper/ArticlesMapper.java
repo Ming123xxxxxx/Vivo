@@ -16,4 +16,7 @@ public interface ArticlesMapper {
     ArticlesPojo getBook(@Param("name") String name);
     List<ArticlesPojo> getpersonalbooks(@Param("authoraccount") String account);
     int deletebook(@Param("name")String name);
+    int getcount();
+    List<ArticlesPojo> getnewbooks(@Param("id") int id);
+    int getlastid();
 }

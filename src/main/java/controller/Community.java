@@ -11,6 +11,7 @@ import service.AdminService;
 import service.ArticlesService;
 import utils.OperationText;
 import utils.RedisArtices;
+import utils.Urls;
 
 import javax.servlet.http.HttpSession;
 import java.io.*;
@@ -34,6 +35,9 @@ public class Community {
     OperationText operationText;
 
     @Autowired
+    Urls urls;
+
+    @Autowired
     RedisArtices redisArtices;
 
     @Autowired
@@ -43,6 +47,8 @@ public class Community {
     @RequestMapping("into")
     public String into(Model model,HttpSession session){
 
+        //获取当前文本数量
+        session.setAttribute("bookcount",articlesService.getlastid());
         List<String> list =redisArtices.allbooks(1,10);
         List<ArticlesPojo> books = new ArrayList<>();
         for(String str:list){
@@ -61,6 +67,35 @@ public class Community {
         }
         model.addAttribute("books",books);
         return "communitys";
+    }
+
+    @ResponseBody
+    @RequestMapping("getnewbooks")
+    public List<ArticlesPojo> getnewbooks(HttpSession session){
+        List<ArticlesPojo> list = new ArrayList<>();
+        if((Integer)session.getAttribute("bookcount")==articlesService.getlastid()){
+            return null;
+        }else{
+            List<ArticlesPojo> bookcount = articlesService.getnewbooks((Integer) session.getAttribute("bookcount"));
+            session.setAttribute("bookcount",articlesService.getlastid());
+            System.out.println("当前书最后的id="+articlesService.getlastid());
+            List<ArticlesPojo> books = new ArrayList<>();
+            for(ArticlesPojo str:bookcount){
+                ArticlesPojo book = articlesService.getBook(str.getName());
+                List list1 =redisArtices.count(str.getName());
+                book.setUp((new Double((Double) list1.get(0)).intValue()));
+                book.setLow((new Double((Double) list1.get(1)).intValue()));
+                book.setDownload(new Double((Double) list1.get(2)).intValue());
+                book.setCollection(new Double((Double) list1.get(3)).intValue());
+                book.setHot((Double) list1.get(4));
+                List list2 = redisArtices.upandlowandcollection((String)session.getAttribute("veri"),str.getName());
+                book.setUpcolor((String)list2.get(0));
+                book.setLowcolor((String)list2.get(1));
+                book.setCollectioncolor((String)list2.get(2));
+                books.add(book);
+            }
+            return books;
+        }
     }
 
     @RequestMapping("operations")
@@ -99,7 +134,6 @@ public class Community {
         List<String> veri = redisArtices.getcollections((String) session.getAttribute("veri"));
         List list = new ArrayList();
         for(String str:veri){
-            System.out.println("articlesService.getBook(str="+articlesService.getBook(str));
             if(articlesService.getBook(str)!=null){
                 ArticlesPojo book = articlesService.getBook(str);
                 List list1 =redisArtices.count(str);

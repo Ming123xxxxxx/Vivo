@@ -45,5 +45,20 @@ public class ArticlesServiceImpl implements  ArticlesService{
         return articlesMapper.deletebook(name);
     }
 
+    @Override
+    public int getcount() {
+        return articlesMapper.getcount();
+    }
+
+    @Override
+    public List<ArticlesPojo> getnewbooks(int id) {
+        return articlesMapper.getnewbooks(id);
+    }
+
+    @Override
+    public int getlastid() {
+        return articlesMapper.getlastid();
+    }
+
 
 }
